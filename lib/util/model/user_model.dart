@@ -1,5 +1,6 @@
 import 'dart:convert';
-import 'package:deneme/util/base/base_model.dart';
+
+import 'package:eticaret/util/base/base_model.dart';
 
 class User extends BaseModel {
   User({

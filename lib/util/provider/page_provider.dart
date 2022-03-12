@@ -1,4 +1,4 @@
-import 'package:deneme/util/constant/page_name.dart';
+import 'package:eticaret/util/constant/page_name.dart';
 import 'package:flutter/material.dart';
 
 class PageProvider extends ChangeNotifier {

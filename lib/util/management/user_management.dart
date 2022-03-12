@@ -1,6 +1,5 @@
 // ignore_for_file: curly_braces_in_flow_control_structures
-
-import 'package:deneme/util/model/user_model.dart';
+import 'package:eticaret/util/model/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserManagement {

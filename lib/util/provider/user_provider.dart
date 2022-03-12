@@ -1,4 +1,3 @@
-import 'package:deneme/util/constant/page_name.dart';
 import 'package:flutter/material.dart';
 
 class UserProvider extends ChangeNotifier {

@@ -1,9 +1,9 @@
 // ignore_for_file: constant_identifier_names
 import 'dart:io';
-import 'package:deneme/util/constant/http_option.dart';
-import 'package:deneme/util/constant/service_method.dart';
-import 'package:deneme/util/constant/service_path.dart';
-import 'package:deneme/util/management/user_management.dart';
+import 'package:eticaret/util/constant/http_option.dart';
+import 'package:eticaret/util/constant/service_method.dart';
+import 'package:eticaret/util/constant/service_path.dart';
+import 'package:eticaret/util/management/user_management.dart';
 import 'package:http/http.dart';
 
 import 'base_model.dart';
