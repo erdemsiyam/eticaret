@@ -1,4 +1,6 @@
-import 'package:eticaret/splash/splash_page.dart';
+import 'package:eticaret/page/login_page.dart';
+import 'package:eticaret/page/main_page.dart';
+import 'package:eticaret/page/splash_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,7 +13,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: SplashPage(),
+      home: MainPage(
+        title: "bbb",
+      ),
     );
   }
 }
