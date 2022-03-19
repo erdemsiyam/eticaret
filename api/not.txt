@@ -1,0 +1,63 @@
+User
+    uuid
+    username
+    password
+    email
+    access_token
+    refresh_token
+Picture
+    uuid
+    name
+Category
+    uuid
+    picture_uuid
+    title
+Option
+    size
+    color
+Item
+    uuid
+    category_uuid
+    small_picture_uuid
+    pictures
+        picture_uuid
+        picture_uuid
+    title
+    description
+    price
+    point
+    options
+        Option
+        Option
+    selected_option
+        Option
+    cart_item_uuid
+Favorite
+    user_id
+    item_id
+CartItem
+    uuid
+    item_uuid
+    selected_option
+Cart
+    user_uuid
+    cart_item_uuids
+
+
+# METHODS
++login
++signup
++refresh_token
+
++get_items  +(by_category) +(by_category)
++get_categories
+
++get_item_by_id
++get_picture_by_id
++get_favories_by_user
++get_cart_by_user
+
++add_favorite
++add_cart
++delete_favorite
++delete_cart
