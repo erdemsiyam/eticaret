@@ -45,8 +45,8 @@ Cart
 
 
 # METHODS
-+login
 +signup
++token
 +refresh_token
 
 +get_items  +(by_category) +(by_category)

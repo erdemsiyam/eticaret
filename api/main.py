@@ -23,7 +23,7 @@ class User(BaseModel):
     email:Optional[str]
     access_token:Optional[str]
     refresh_token:Optional[str]
-users = []
+users:list[User] = []
 user1 = User()
 user1.uuid="b0e27d14-f6c3-45e3-b9dc-da4c106cba75"
 user1.username="erdem"
@@ -219,7 +219,7 @@ def check_auth(authorize:AuthJWT):
         authorize.jwt_required()
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail="Invalid Token")
-    
+
 @app.get('/')
 def index(authorize:AuthJWT=Depends()):
     check_auth(authorize=authorize)
@@ -229,18 +229,19 @@ def index(authorize:AuthJWT=Depends()):
 def token(user:User,authorize:AuthJWT=Depends()):
     for u in users:
         if (user.username == u.username) and (user.password == u.password):
-            user.uuid = u.uuid
-            user.username = u.username
-            user.email = u.email
-            user.password = None
-            user.access_token = authorize.create_access_token(subject=u.uuid) # token üretilir
-            user.refresh_token = authorize.create_refresh_token(subject=u.uuid)
-            return user
+            u.access_token = authorize.create_access_token(subject=u.uuid) # token üretilir
+            u.refresh_token = authorize.create_refresh_token(subject=u.uuid)
+            response_user = u.copy()
+            response_user.password = None
+            return response_user
     return HTTPException(status_code='401',detail='Invalid Username or Password')
 
 @app.get('/refresh_token')
 def refresh_token(authorize:AuthJWT=Depends()):
-    check_auth(authorize=authorize)
+    try:
+        authorize.jwt_refresh_token_required()
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail="Invalid Token")
     current_user_uuid = authorize.get_jwt_subject()
     for u in users:
         if (u.uuid == current_user_uuid):
@@ -250,7 +251,7 @@ def refresh_token(authorize:AuthJWT=Depends()):
             user.email = u.email
             user.password = None
             user.access_token = authorize.create_access_token(subject=u.uuid) # token üretilir
-            user.refresh_token = authorize.create_refresh_token(subject=u.uuid)
+            user.refresh_token = u.refresh_token
             return user
     return HTTPException(status_code='401',detail='Invalid Username or Password')
 
@@ -297,7 +298,7 @@ def get_item_by_id(item_uuid:str):
 async def get_picture_by_id(uuid:str):
     for i in pictures:
         if i.uuid == uuid:
-            return FileResponse(i.path+'.jpg')
+            return FileResponse(IMAGEDIR+i.name)
     return {}
 
 @app.get('/favorites/')
