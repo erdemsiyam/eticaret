@@ -44,11 +44,11 @@ class User extends BaseModel {
     if (uuid == null ||
         username == null ||
         refreshToken == null ||
-        accessToken == null) return false;
+        accessToken == null) return true;
     if (uuid!.isEmpty ||
         username!.isEmpty ||
         refreshToken!.isEmpty ||
-        accessToken!.isEmpty) return false;
-    return true;
+        accessToken!.isEmpty) return true;
+    return false;
   }
 }

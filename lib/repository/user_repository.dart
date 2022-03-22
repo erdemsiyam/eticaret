@@ -42,7 +42,7 @@ class UserRepository {
 
   Future<User?> login(User loginUser) async {
     User? responseUser = await UserService.instance.login(loginUser);
-    if (responseUser == null) {
+    if (responseUser == null || responseUser.isEmpty()) {
       return null;
     } else {
       user = responseUser;
