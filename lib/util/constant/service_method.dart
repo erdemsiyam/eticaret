@@ -12,8 +12,8 @@ class ServiceMethod {
       ServiceMethod._private(ServicePath.SINGUP, HttpOption.POST);
   static ServiceMethod TOKEN =
       ServiceMethod._private(ServicePath.TOKEN, HttpOption.POST);
-  static ServiceMethod RETOKEN =
-      ServiceMethod._private(ServicePath.RETOKEN, HttpOption.GET);
+  static ServiceMethod REFRESH_TOKEN =
+      ServiceMethod._private(ServicePath.REFRESH_TOKEN, HttpOption.GET);
   static ServiceMethod GET_NOTES =
       ServiceMethod._private(ServicePath.NOTES, HttpOption.GET);
   static ServiceMethod CREATE_NOTE =

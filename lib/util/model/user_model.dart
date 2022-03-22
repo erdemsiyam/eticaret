@@ -39,4 +39,16 @@ class User extends BaseModel {
     accessToken = map["access_token"];
     refreshToken = map["refresh_token"];
   }
+
+  bool isEmpty() {
+    if (uuid == null ||
+        username == null ||
+        refreshToken == null ||
+        accessToken == null) return false;
+    if (uuid!.isEmpty ||
+        username!.isEmpty ||
+        refreshToken!.isEmpty ||
+        accessToken!.isEmpty) return false;
+    return true;
+  }
 }

@@ -1,4 +1,10 @@
+import 'package:eticaret/mvvm/user_login/bloc/user_login_bloc.dart';
+import 'package:eticaret/page/home_page.dart';
+import 'package:eticaret/page/login_page.dart';
+import 'package:eticaret/repository/user_repository.dart';
+import 'package:eticaret/util/model/user_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SplashPage extends StatefulWidget {
   SplashPage({Key? key, this.title}) : super(key: key);
@@ -35,6 +41,27 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
+    // Auth & Token Control Then Routing
+    UserRepository.instance.getUserAndToken().then(
+      (User? user) {
+        if (user == null) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => BlocProvider(
+                create: (_) => UserLoginBloc(),
+                child: const LoginPage(),
+              ),
+            ),
+          );
+        } else {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => HomePage(title: "")),
+          );
+        }
+      },
+    );
     return Scaffold(
       body: SafeArea(
         child: Container(

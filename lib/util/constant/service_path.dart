@@ -5,7 +5,7 @@ class ServicePath {
   static const String INDEX = '/';
   static const String SINGUP = '/signup';
   static const String TOKEN = '/token';
-  static const String RETOKEN = '/retoken';
+  static const String REFRESH_TOKEN = '/refresh_token';
   static const String NOTES = '/notes';
   static const String NOTE = '/note';
 }

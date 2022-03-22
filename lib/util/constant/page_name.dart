@@ -3,11 +3,11 @@
 class PageName {
   static const String SPLASH = '/splash';
   // AUTH
-  static const String LOGIN = '/splash';
-  static const String RESET_PASSWORD = '/splash';
-  static const String REGISTER = '/splash';
+  static const String LOGIN = '/login';
+  static const String SIGNUP = '/signup';
   // HOME
-  static const String HOME = '/splash';
-  static const String PAGE1 = '/page1';
-  static const String PAGE2 = '/page2';
+  static const String HOME = '/home';
+  static const String DETAIL = '/detail';
+  static const String CART = '/cart';
+  static const String FAVORITE = '/favorite';
 }

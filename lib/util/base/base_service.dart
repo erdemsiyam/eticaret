@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names
 import 'dart:io';
 import 'package:eticaret/util/constant/http_option.dart';
+import 'package:eticaret/util/constant/page_name.dart';
 import 'package:eticaret/util/constant/service_method.dart';
 import 'package:eticaret/util/constant/service_path.dart';
 import 'package:eticaret/util/management/user_management.dart';
@@ -19,7 +20,7 @@ class BaseService {
     required ServiceMethod serviceMethod,
     Map<String, String>? extraHeader,
     String? query,
-    bool recursive = true,
+    bool isRefreshToken = false,
   }) async {
     if (query != null) {
       query = "/" + query;
@@ -34,15 +35,22 @@ class BaseService {
     }
     // Auth Token Adding To Header
     if (isAuthEnable) {
-      if (UserManagement.user?.accessToken != null) {
-        header.addAll({
-          HttpHeaders.authorizationHeader:
-              "Bearer " + UserManagement.user!.accessToken!
-        });
+      if (isRefreshToken &&
+          UserManagement.instance.user?.refreshToken != null) {
+        header.addAll(
+          {
+            HttpHeaders.authorizationHeader:
+                "Bearer " + UserManagement.instance.user!.refreshToken!
+          },
+        );
+      } else if (UserManagement.instance.user?.accessToken != null) {
+        header.addAll(
+          {
+            HttpHeaders.authorizationHeader:
+                "Bearer " + UserManagement.instance.user!.accessToken!
+          },
+        );
       }
-      // else {
-      //   throw Exception('No User Found Error');
-      // }
     }
     header.addAll({HttpHeaders.contentTypeHeader: 'application/json'});
 
@@ -82,8 +90,7 @@ class BaseService {
 
     if (response == null) throw Exception('No Response');
 
-    switch (401) {
-      // response.statusCode
+    switch (response.statusCode) {
       case 200:
         responseModel.fromJson(response.body);
         return responseModel;
@@ -98,6 +105,7 @@ class BaseService {
         //     );
         //   }
         // }
+        // PageProvider.instance.changePage(PageName.LOGIN);
         throw Exception('Auth Error ');
 
       default:

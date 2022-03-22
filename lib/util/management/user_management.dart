@@ -3,7 +3,11 @@ import 'package:eticaret/util/model/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserManagement {
-  /* NOT : init fonksiyonu mainde await olarak çağırılmalı */
+  /* 
+    NOT : init fonksiyonu mainde await olarak çağırılmalı
+    WidgetsFlutterBinding.ensureInitialized();
+    await UserManagement.instance.init();
+  */
 
   // Constructor
   UserManagement._singleton();
@@ -15,7 +19,7 @@ class UserManagement {
   static const String _usernameKey = "USERNAME";
   static const String _accessTokenKey = "ACCESS_TOKEN";
   static const String _refreshTokenKey = "REFRESH_TOKEN";
-  static User? user;
+  User? user;
 
   // Getter Setter
   static UserManagement get instance => _userManagement;
