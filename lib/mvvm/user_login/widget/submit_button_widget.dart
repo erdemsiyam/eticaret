@@ -1,10 +1,9 @@
-import 'package:eticaret/mvvm/user_login/bloc/user_login_bloc.dart';
 import 'package:eticaret/mvvm/user_login/widget/error_label_widget.dart';
 import 'package:flutter/material.dart';
 
 class SubmitButton extends StatelessWidget {
-  VoidCallback onClick;
-  SubmitButton({required this.onClick, Key? key}) : super(key: key);
+  final VoidCallback onClick;
+  const SubmitButton({required this.onClick, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

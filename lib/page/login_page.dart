@@ -1,4 +1,8 @@
-import 'package:eticaret/mvvm/user_login/bloc/user_login_bloc.dart';
+import 'package:eticaret/mvvm/category/bloc/category_bloc.dart';
+import 'package:eticaret/mvvm/products/bloc/products_bloc.dart'
+    as products_bloc;
+import 'package:eticaret/mvvm/user_login/bloc/user_login_bloc.dart'
+    as user_login_bloc;
 import 'package:eticaret/mvvm/user_login/widget/create_account_label_widget.dart';
 import 'package:eticaret/mvvm/user_login/widget/divider_widget.dart';
 import 'package:eticaret/mvvm/user_login/widget/email_password_widget.dart';
@@ -6,7 +10,6 @@ import 'package:eticaret/mvvm/user_login/widget/facebook_button_widget.dart';
 import 'package:eticaret/mvvm/user_login/widget/forgot_password_label_widget.dart';
 import 'package:eticaret/mvvm/user_login/widget/submit_button_widget.dart';
 import 'package:eticaret/mvvm/user_login/widget/title_widget.dart';
-import 'package:eticaret/page/home_page.dart';
 import 'package:eticaret/page/main_page.dart';
 import 'package:eticaret/widget/bezier_container_widget.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     return BlocBuilder(
-      bloc: BlocProvider.of<UserLoginBloc>(context),
+      bloc: BlocProvider.of<user_login_bloc.UserLoginBloc>(context),
       builder: (_, state) {
         return Scaffold(
           body: Container(
@@ -59,20 +62,36 @@ class _LoginPageState extends State<LoginPage> {
                           },
                         ),
                         const SizedBox(height: 20),
-                        (state is LoadedState)
+                        (state is user_login_bloc.LoadedState)
                             ? SubmitButton(
                                 onClick: () {
                                   if (username != null && password != null) {
-                                    BlocProvider.of<UserLoginBloc>(context).add(
-                                      LoginClickEvent(
+                                    BlocProvider.of<
+                                            user_login_bloc
+                                                .UserLoginBloc>(context)
+                                        .add(
+                                      user_login_bloc.LoginClickEvent(
                                         username: username!,
                                         password: password!,
                                         onLoginSuccess: () {
                                           Navigator.pushReplacement(
                                             context,
                                             MaterialPageRoute(
-                                                builder: (context) =>
-                                                    MainPage(title: "")),
+                                              builder: (context) =>
+                                                  MultiBlocProvider(
+                                                providers: [
+                                                  BlocProvider(
+                                                    create: (_) =>
+                                                        CategoryBloc(),
+                                                  ),
+                                                  BlocProvider(
+                                                    create: (_) => products_bloc
+                                                        .ProductsBloc(),
+                                                  ),
+                                                ],
+                                                child: MainPage(title: ""),
+                                              ),
+                                            ),
                                           );
                                         },
                                       ),

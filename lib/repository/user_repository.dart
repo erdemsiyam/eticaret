@@ -3,20 +3,18 @@ import 'package:eticaret/util/model/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserRepository {
-  // Constructor
+  // Singleton
   UserRepository._singleton();
+  static final UserRepository _instance = UserRepository._singleton();
+  static UserRepository get instance => _instance;
 
   // Static Fields
-  static final UserRepository _userRepository = UserRepository._singleton();
   SharedPreferences? _sharedPreferences;
   static const String _uuidKey = "UUID";
   static const String _usernameKey = "USERNAME";
   static const String _accessTokenKey = "ACCESS_TOKEN";
   static const String _refreshTokenKey = "REFRESH_TOKEN";
   User? user;
-
-  // Getter Setter
-  static UserRepository get instance => _userRepository;
 
   // Methods
   Future<User?> getUserAndToken() async {

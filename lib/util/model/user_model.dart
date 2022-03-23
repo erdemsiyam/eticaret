@@ -31,13 +31,7 @@ class User extends BaseModel {
 
   @override
   fromJson(String jsonStr) {
-    Map<String, dynamic> map = json.decode(jsonStr);
-    uuid = map["uuid"];
-    username = map["username"];
-    email = map["email"];
-    password = map["password"];
-    accessToken = map["access_token"];
-    refreshToken = map["refresh_token"];
+    fromMap(json.decode(jsonStr));
   }
 
   bool isEmpty() {
@@ -50,5 +44,15 @@ class User extends BaseModel {
         refreshToken!.isEmpty ||
         accessToken!.isEmpty) return true;
     return false;
+  }
+
+  @override
+  fromMap(Map<String, dynamic> map) {
+    uuid = map["uuid"];
+    username = map["username"];
+    email = map["email"];
+    password = map["password"];
+    accessToken = map["access_token"];
+    refreshToken = map["refresh_token"];
   }
 }

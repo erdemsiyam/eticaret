@@ -8,14 +8,14 @@ part 'user_login_event.dart';
 part 'user_login_state.dart';
 
 class UserLoginBloc extends Bloc<UserLoginEvent, UserLoginState> {
-  UserLoginBloc() : super((LoadedState())) {
+  UserLoginBloc() : super((const LoadedState())) {
     on<LoginClickEvent>((event, emit) async {
       emit(LoadingState());
       await Future.delayed(const Duration(seconds: 1));
       User? responseUser = await UserRepository.instance
           .login(User(username: event.username, password: event.password));
       if (responseUser == null) {
-        emit(LoadedState(errorText: "Username or Password Wrong."));
+        emit(const LoadedState(errorText: "Username or Password Wrong."));
       } else {
         // emit(LoadedState(isloginSuccess: true));
         event.onLoginSuccess.call();

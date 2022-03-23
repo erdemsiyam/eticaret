@@ -1,3 +1,4 @@
+import 'package:eticaret/mvvm/products/bloc/products_bloc.dart';
 import 'package:eticaret/page/home_page.dart';
 import 'package:eticaret/page/shopping_cart_page.dart';
 import 'package:eticaret/theme/light_color.dart';
@@ -6,9 +7,10 @@ import 'package:eticaret/widget/BottomNavigationBar/bottom_navigation_bar.dart';
 import 'package:eticaret/widget/title_text.dart';
 import 'package:flutter/material.dart';
 import 'package:eticaret/widget/extentions.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MainPage extends StatefulWidget {
-  MainPage({Key? key, required this.title}) : super(key: key);
+  const MainPage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -17,6 +19,13 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  @override
+  void initState() {
+    super.initState();
+    // Get Products
+    BlocProvider.of<ProductsBloc>(context).add(GetProductsEvent());
+  }
+
   bool isHomePageSelected = true;
   Widget _appBar() {
     return Container(
@@ -29,11 +38,11 @@ class _MainPageState extends State<MainPage> {
             child: _icon(Icons.sort, color: Colors.black54),
           ),
           ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(13)),
+            borderRadius: const BorderRadius.all(Radius.circular(13)),
             child: Container(
               decoration: BoxDecoration(
                 color: Theme.of(context).backgroundColor,
-                boxShadow: <BoxShadow>[
+                boxShadow: const <BoxShadow>[
                   BoxShadow(
                       color: Color(0xfff8f8f8),
                       blurRadius: 10,
@@ -42,7 +51,12 @@ class _MainPageState extends State<MainPage> {
               ),
               child: Image.asset("assets/user.png"),
             ),
-          ).ripple(() {}, borderRadius: BorderRadius.all(Radius.circular(13)))
+          ).ripple(
+            () {},
+            borderRadius: const BorderRadius.all(
+              Radius.circular(13),
+            ),
+          ),
         ],
       ),
     );
@@ -50,52 +64,63 @@ class _MainPageState extends State<MainPage> {
 
   Widget _icon(IconData icon, {Color color = LightColor.iconColor}) {
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(13)),
-          color: Theme.of(context).backgroundColor,
-          boxShadow: AppTheme.shadow),
+        borderRadius: const BorderRadius.all(Radius.circular(13)),
+        color: Theme.of(context).backgroundColor,
+        boxShadow: AppTheme.shadow,
+      ),
       child: Icon(
         icon,
         color: color,
       ),
-    ).ripple(() {}, borderRadius: BorderRadius.all(Radius.circular(13)));
+    ).ripple(
+      () {},
+      borderRadius: const BorderRadius.all(
+        Radius.circular(13),
+      ),
+    );
   }
 
   Widget _title() {
     return Container(
-        margin: AppTheme.padding,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                TitleText(
-                  text: isHomePageSelected ? 'Our' : 'Shopping',
-                  fontSize: 27,
-                  fontWeight: FontWeight.w400,
-                ),
-                TitleText(
-                  text: isHomePageSelected ? 'Products' : 'Cart',
-                  fontSize: 27,
-                  fontWeight: FontWeight.w700,
-                ),
-              ],
-            ),
-            Spacer(),
-            !isHomePageSelected
-                ? Container(
-                    padding: EdgeInsets.all(10),
-                    child: Icon(
-                      Icons.delete_outline,
-                      color: LightColor.orange,
-                    ),
-                  ).ripple(() {},
-                    borderRadius: BorderRadius.all(Radius.circular(13)))
-                : SizedBox()
-          ],
-        ));
+      margin: AppTheme.padding,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              TitleText(
+                text: isHomePageSelected ? 'Our' : 'Shopping',
+                fontSize: 27,
+                fontWeight: FontWeight.w400,
+              ),
+              TitleText(
+                text: isHomePageSelected ? 'Products' : 'Cart',
+                fontSize: 27,
+                fontWeight: FontWeight.w700,
+              ),
+            ],
+          ),
+          const Spacer(),
+          !isHomePageSelected
+              ? Container(
+                  padding: const EdgeInsets.all(10),
+                  child: const Icon(
+                    Icons.delete_outline,
+                    color: LightColor.orange,
+                  ),
+                ).ripple(
+                  () {},
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(13),
+                  ),
+                )
+              : const SizedBox(),
+        ],
+      ),
+    );
   }
 
   void onBottomIconPressed(int index) {
@@ -120,7 +145,7 @@ class _MainPageState extends State<MainPage> {
             SingleChildScrollView(
               child: Container(
                 height: AppTheme.fullHeight(context) - 50,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
                       Color(0xfffbfbfb),
@@ -137,19 +162,19 @@ class _MainPageState extends State<MainPage> {
                     _title(),
                     Expanded(
                       child: AnimatedSwitcher(
-                        duration: Duration(milliseconds: 300),
+                        duration: const Duration(milliseconds: 300),
                         switchInCurve: Curves.easeInToLinear,
                         switchOutCurve: Curves.easeOutBack,
                         child: isHomePageSelected
                             ? HomePage(
                                 title: "aaa",
                               )
-                            : Align(
+                            : const Align(
                                 alignment: Alignment.topCenter,
                                 child: ShoppingCartPage(),
                               ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),

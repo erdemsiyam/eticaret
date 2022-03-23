@@ -6,6 +6,7 @@ class ServicePath {
   static const String SINGUP = '/signup';
   static const String TOKEN = '/token';
   static const String REFRESH_TOKEN = '/refresh_token';
-  static const String NOTES = '/notes';
-  static const String NOTE = '/note';
+  static const String PRODUCTS = '/items';
+  static const String CATEGORIES = '/categories';
+  static const String PICTURE = '/picture';
 }

@@ -14,12 +14,10 @@ class ServiceMethod {
       ServiceMethod._private(ServicePath.TOKEN, HttpOption.POST);
   static ServiceMethod REFRESH_TOKEN =
       ServiceMethod._private(ServicePath.REFRESH_TOKEN, HttpOption.GET);
-  static ServiceMethod GET_NOTES =
-      ServiceMethod._private(ServicePath.NOTES, HttpOption.GET);
-  static ServiceMethod CREATE_NOTE =
-      ServiceMethod._private(ServicePath.NOTE, HttpOption.POST);
-  static ServiceMethod UPDATE_NOTE =
-      ServiceMethod._private(ServicePath.NOTE, HttpOption.PUT);
-  static ServiceMethod DELETE_NOTE =
-      ServiceMethod._private(ServicePath.NOTE, HttpOption.DELETE);
+  static ServiceMethod GET_PRODUCTS =
+      ServiceMethod._private(ServicePath.PRODUCTS, HttpOption.GET);
+  static ServiceMethod GET_CATEGORIES =
+      ServiceMethod._private(ServicePath.CATEGORIES, HttpOption.GET);
+  static ServiceMethod GET_PICTURE =
+      ServiceMethod._private(ServicePath.PICTURE, HttpOption.GET);
 }

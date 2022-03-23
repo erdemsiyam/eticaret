@@ -8,9 +8,9 @@ abstract class UserLoginState extends Equatable {
 }
 
 class LoadedState extends UserLoginState {
-  bool isloginSuccess;
-  String? errorText;
-  LoadedState({this.isloginSuccess = false, this.errorText});
+  final bool isloginSuccess;
+  final String? errorText;
+  const LoadedState({this.isloginSuccess = false, this.errorText});
 }
 
 class LoadingState extends UserLoginState {}
