@@ -1,6 +1,7 @@
+import 'package:eticaret/mvvm/category/bloc/category_bloc.dart';
 import 'package:eticaret/mvvm/products/bloc/products_bloc.dart';
-import 'package:eticaret/page/home_page.dart';
-import 'package:eticaret/page/shopping_cart_page.dart';
+import 'package:eticaret/page/inner_page/home_page.dart';
+import 'package:eticaret/page/inner_page/shopping_cart_page.dart';
 import 'package:eticaret/theme/light_color.dart';
 import 'package:eticaret/theme/theme.dart';
 import 'package:eticaret/widget/BottomNavigationBar/bottom_navigation_bar.dart';
@@ -22,8 +23,8 @@ class _MainPageState extends State<MainPage> {
   @override
   void initState() {
     super.initState();
-    // Get Products
     BlocProvider.of<ProductsBloc>(context).add(GetProductsEvent());
+    BlocProvider.of<CategoryBloc>(context).add(GetCategoriesEvent());
   }
 
   bool isHomePageSelected = true;
@@ -166,9 +167,7 @@ class _MainPageState extends State<MainPage> {
                         switchInCurve: Curves.easeInToLinear,
                         switchOutCurve: Curves.easeOutBack,
                         child: isHomePageSelected
-                            ? HomePage(
-                                title: "aaa",
-                              )
+                            ? const HomePage(title: "aaa")
                             : const Align(
                                 alignment: Alignment.topCenter,
                                 child: ShoppingCartPage(),

@@ -57,9 +57,11 @@ class UserRepository {
     cacheUser.username = _sharedPreferences?.getString(_usernameKey);
     cacheUser.accessToken = _sharedPreferences?.getString(_accessTokenKey);
     cacheUser.refreshToken = _sharedPreferences?.getString(_refreshTokenKey);
+
     if (cacheUser.isEmpty()) {
       return null;
     } else {
+      user = cacheUser;
       return user;
     }
   }

@@ -7,6 +7,9 @@ abstract class CategoryState extends Equatable {
   List<Object> get props => [];
 }
 
-class LoadedState extends CategoryState {}
+class LoadedState extends CategoryState {
+  final List<Category> categories;
+  const LoadedState({required this.categories});
+}
 
 class LoadingState extends CategoryState {}

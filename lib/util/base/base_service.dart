@@ -1,12 +1,10 @@
 // ignore_for_file: constant_identifier_names
 import 'dart:io';
+import 'package:eticaret/repository/user_repository.dart';
 import 'package:eticaret/util/constant/http_option.dart';
-import 'package:eticaret/util/constant/page_name.dart';
 import 'package:eticaret/util/constant/service_method.dart';
 import 'package:eticaret/util/constant/service_path.dart';
-import 'package:eticaret/util/management/user_management.dart';
 import 'package:http/http.dart';
-
 import 'base_model.dart';
 
 class BaseService {
@@ -36,18 +34,18 @@ class BaseService {
     // Auth Token Adding To Header
     if (isAuthEnable) {
       if (isRefreshToken &&
-          UserManagement.instance.user?.refreshToken != null) {
+          UserRepository.instance.user?.refreshToken != null) {
         header.addAll(
           {
             HttpHeaders.authorizationHeader:
-                "Bearer " + UserManagement.instance.user!.refreshToken!
+                "Bearer " + UserRepository.instance.user!.refreshToken!
           },
         );
-      } else if (UserManagement.instance.user?.accessToken != null) {
+      } else if (UserRepository.instance.user?.accessToken != null) {
         header.addAll(
           {
             HttpHeaders.authorizationHeader:
-                "Bearer " + UserManagement.instance.user!.accessToken!
+                "Bearer " + UserRepository.instance.user!.accessToken!
           },
         );
       }

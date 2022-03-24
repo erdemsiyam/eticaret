@@ -1,5 +1,7 @@
+import 'package:eticaret/mvvm/category/bloc/category_bloc.dart';
+import 'package:eticaret/mvvm/products/bloc/products_bloc.dart';
 import 'package:eticaret/mvvm/user_login/bloc/user_login_bloc.dart';
-import 'package:eticaret/page/home_page.dart';
+import 'package:eticaret/page/inner_page/home_page.dart';
 import 'package:eticaret/page/login_page.dart';
 import 'package:eticaret/page/main_page.dart';
 import 'package:eticaret/repository/user_repository.dart';
@@ -58,7 +60,19 @@ class _SplashPageState extends State<SplashPage> {
         } else {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => MainPage(title: "")),
+            MaterialPageRoute(
+              builder: (context) => MultiBlocProvider(
+                providers: [
+                  BlocProvider(
+                    create: (_) => CategoryBloc(),
+                  ),
+                  BlocProvider(
+                    create: (_) => ProductsBloc(),
+                  ),
+                ],
+                child: const MainPage(title: ""),
+              ),
+            ),
           );
         }
       },

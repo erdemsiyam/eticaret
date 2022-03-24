@@ -33,6 +33,7 @@ class Product extends BaseModel {
   List<Option>? options;
   Option? selectedOption;
   String? cartItemUuid;
+  // Local Properties
   Uint8List? picture;
 
   @override

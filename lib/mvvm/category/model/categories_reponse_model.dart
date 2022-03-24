@@ -9,7 +9,7 @@ class CategoriesResponse extends BaseModel {
   @override
   fromJson(String jsonStr) {
     categories = List<Category>.from(
-        json.decode(jsonStr).map((x) => Category()..fromJson(x)));
+        json.decode(jsonStr).map((x) => Category()..fromMap(x)));
   }
 
   @override

@@ -12,6 +12,8 @@ class Category extends BaseModel {
   String? uuid;
   String? pictureUuid;
   String? title;
+  // Local Properties
+  bool isSelected = false;
   Uint8List? picture;
 
   @override

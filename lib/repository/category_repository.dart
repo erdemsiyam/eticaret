@@ -23,6 +23,7 @@ class CategoryRepository {
                 .getPictureById(category.pictureUuid!);
           }
         }
+        categories.add(Category(uuid: "0", title: "All"));
         categories.addAll(newCategories);
       }
     }
