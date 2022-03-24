@@ -35,6 +35,8 @@ class Product extends BaseModel {
   String? cartItemUuid;
   // Local Properties
   Uint8List? picture;
+  bool isSelected = true;
+  bool isLiked = true;
 
   @override
   fromJson(String jsonStr) {

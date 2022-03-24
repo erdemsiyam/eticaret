@@ -1,3 +1,4 @@
+import 'package:eticaret/mvvm/category/model/category_model.dart';
 import 'package:eticaret/mvvm/product/model/product_model.dart';
 import 'package:eticaret/service/picture_service.dart';
 import 'package:eticaret/service/product_service.dart';
@@ -27,5 +28,17 @@ class ProductRepository {
       }
     }
     return products;
+  }
+
+  Future<List<Product>> getProductsByCategory(Category category) async {
+    if (products.isEmpty) {
+      await getProducts();
+    }
+
+    if (category.uuid == "0") return products; // 0 : All demektir.
+
+    return products
+        .where((element) => element.categoryUuid == category.uuid)
+        .toList();
   }
 }

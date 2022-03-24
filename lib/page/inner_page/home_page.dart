@@ -1,16 +1,12 @@
-import 'package:eticaret/model/data.dart';
 import 'package:eticaret/mvvm/category/bloc/category_bloc.dart'
     as category_bloc;
 import 'package:eticaret/mvvm/category/widget/categories_widget.dart';
-import 'package:eticaret/mvvm/products/bloc/products_bloc.dart';
+import 'package:eticaret/mvvm/products/widget/products_widget.dart';
 import 'package:eticaret/theme/light_color.dart';
 import 'package:eticaret/theme/theme.dart';
 import 'package:eticaret/widget/extentions.dart';
-import 'package:eticaret/widget/product_card.dart';
-import 'package:eticaret/mvvm/category/widget/category_icon.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.title}) : super(key: key);
@@ -34,38 +30,6 @@ class _HomePageState extends State<HomePage> {
         color: color,
       ),
     ).ripple(() {}, borderRadius: const BorderRadius.all(Radius.circular(13)));
-  }
-
-  Widget _productWidget() {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10),
-      width: AppTheme.fullWidth(context),
-      height: AppTheme.fullWidth(context) * .7,
-      child: GridView(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 1,
-            childAspectRatio: 4 / 3,
-            mainAxisSpacing: 30,
-            crossAxisSpacing: 20),
-        padding: const EdgeInsets.only(left: 20),
-        scrollDirection: Axis.horizontal,
-        children: AppData.productList
-            .map(
-              (product) => ProductCard(
-                product: product,
-                onSelected: (model) {
-                  setState(() {
-                    AppData.productList.forEach((item) {
-                      item.isSelected = false;
-                    });
-                    model.isSelected = true;
-                  });
-                },
-              ),
-            )
-            .toList(),
-      ),
-    );
   }
 
   Widget _search() {
@@ -111,7 +75,7 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             _search(),
             const CategoriesWidget(),
-            _productWidget(),
+            const ProductsWidget(),
           ],
         ),
       ),

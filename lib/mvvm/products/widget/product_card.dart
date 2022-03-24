@@ -1,4 +1,4 @@
-import 'package:eticaret/model/product.dart';
+import 'package:eticaret/mvvm/product/model/product_model.dart';
 import 'package:eticaret/theme/light_color.dart';
 import 'package:eticaret/widget/title_text.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +7,7 @@ import 'package:eticaret/widget/extentions.dart';
 class ProductCard extends StatelessWidget {
   final Product product;
   final ValueChanged<Product> onSelected;
-  ProductCard({Key? key, required this.product, required this.onSelected})
+  const ProductCard({Key? key, required this.product, required this.onSelected})
       : super(key: key);
 
 //   @override
@@ -25,7 +25,7 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: LightColor.background,
         borderRadius: BorderRadius.all(Radius.circular(20)),
         boxShadow: <BoxShadow>[
@@ -34,7 +34,7 @@ class ProductCard extends StatelessWidget {
       ),
       margin: EdgeInsets.symmetric(vertical: !product.isSelected ? 20 : 0),
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Stack(
           alignment: Alignment.center,
           children: <Widget>[
@@ -43,9 +43,9 @@ class ProductCard extends StatelessWidget {
               top: 0,
               child: IconButton(
                 icon: Icon(
-                  product.isliked ? Icons.favorite : Icons.favorite_border,
+                  product.isLiked ? Icons.favorite : Icons.favorite_border,
                   color:
-                      product.isliked ? LightColor.red : LightColor.iconColor,
+                      product.isLiked ? LightColor.red : LightColor.iconColor,
                 ),
                 onPressed: () {},
               ),
@@ -63,32 +63,39 @@ class ProductCard extends StatelessWidget {
                         radius: 40,
                         backgroundColor: LightColor.orange.withAlpha(40),
                       ),
-                      Image.asset(product.image)
+                      (product.picture != null)
+                          ? ClipRRect(
+                              borderRadius: BorderRadius.circular(16.0),
+                              child: Image.memory(product.picture!))
+                          : const SizedBox(),
                     ],
                   ),
                 ),
                 // SizedBox(height: 5),
                 TitleText(
-                  text: product.name,
+                  text: product.title ?? "",
                   fontSize: product.isSelected ? 16 : 14,
                 ),
                 TitleText(
-                  text: product.category,
+                  text: "Price",
                   fontSize: product.isSelected ? 14 : 12,
                   color: LightColor.orange,
                 ),
                 TitleText(
-                  text: product.price.toString(),
+                  text: "${product.price.toString()}\$",
                   fontSize: product.isSelected ? 18 : 16,
                 ),
               ],
             ),
           ],
         ),
-      ).ripple(() {
-        Navigator.of(context).pushNamed('/detail');
-        onSelected(product);
-      }, borderRadius: BorderRadius.all(Radius.circular(20))),
+      ).ripple(
+        () {
+          Navigator.of(context).pushNamed('/detail');
+          onSelected(product);
+        },
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
+      ),
     );
   }
 }
