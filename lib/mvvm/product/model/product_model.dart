@@ -34,7 +34,8 @@ class Product extends BaseModel {
   Option? selectedOption;
   String? cartItemUuid;
   // Local Properties
-  Uint8List? picture;
+  Uint8List? smallPicture;
+  List<Uint8List>? bigPictures;
   bool isSelected = true;
   bool isLiked = true;
 

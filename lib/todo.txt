@@ -1,7 +1,20 @@
 +category selected bloc a taşı
 +product gezinmesi sırasında öne gelen elemen selected olup uzasın bunu bloc taşı
 product detail
+    bloc
+    ui
+    ui setStates
+    favori
+    cart
 cart
+    bloc
+    ui
+    get
+    delete
 favori
+    bloc
+    ui
+    get
+    delete
 arama
 localization

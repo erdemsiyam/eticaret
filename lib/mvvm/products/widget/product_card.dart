@@ -1,8 +1,11 @@
+import 'package:eticaret/mvvm/product/bloc/product_bloc.dart';
 import 'package:eticaret/mvvm/product/model/product_model.dart';
+import 'package:eticaret/page/product_detail_page.dart';
 import 'package:eticaret/theme/light_color.dart';
 import 'package:eticaret/widget/title_text.dart';
 import 'package:flutter/material.dart';
 import 'package:eticaret/widget/extentions.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -63,10 +66,10 @@ class ProductCard extends StatelessWidget {
                         radius: 40,
                         backgroundColor: LightColor.orange.withAlpha(40),
                       ),
-                      (product.picture != null)
+                      (product.smallPicture != null)
                           ? ClipRRect(
                               borderRadius: BorderRadius.circular(16.0),
-                              child: Image.memory(product.picture!))
+                              child: Image.memory(product.smallPicture!))
                           : const SizedBox(),
                     ],
                   ),
@@ -91,8 +94,20 @@ class ProductCard extends StatelessWidget {
         ),
       ).ripple(
         () {
-          Navigator.of(context).pushNamed('/detail');
           onSelected(product);
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => MultiBlocProvider(
+                providers: [
+                  BlocProvider(
+                    create: (_) => ProductBloc(product),
+                  ),
+                ],
+                child: ProductDetailPage(),
+              ),
+            ),
+          );
         },
         borderRadius: const BorderRadius.all(Radius.circular(20)),
       ),

@@ -21,7 +21,7 @@ class ProductRepository {
         // Get Pictures of Images
         for (Product product in newProducts) {
           if (product.smallPictureUuid != null) {
-            product.picture = await PictureService.instance
+            product.smallPicture = await PictureService.instance
                 .getPictureById(product.smallPictureUuid!);
           }
         }
@@ -46,5 +46,15 @@ class ProductRepository {
           .toList();
     }
     return selectedProducts;
+  }
+
+  Future<Product> getProductImages(Product product) async {
+    if (product.pictures == null) return product;
+
+    for (String picUuid in product.pictures!) {
+      product.bigPictures
+          ?.add(await PictureService.instance.getPictureById(picUuid));
+    }
+    return product;
   }
 }

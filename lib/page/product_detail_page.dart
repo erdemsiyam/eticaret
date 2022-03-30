@@ -19,8 +19,8 @@ class _ProductDetailPageState extends State<ProductDetailPage>
   @override
   void initState() {
     super.initState();
-    controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
+    controller = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 300));
     animation = Tween<double>(begin: 0, end: 1).animate(
         CurvedAnimation(parent: controller, curve: Curves.easeInToLinear));
     controller.forward();
