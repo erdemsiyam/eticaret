@@ -11,6 +11,7 @@ class ProductRepository {
 
   // Property
   List<Product> products = [];
+  List<Product> selectedProducts = []; // By Word Search or By Category select
 
   // Methods
   Future<List<Product>> getProducts() async {
@@ -25,20 +26,25 @@ class ProductRepository {
           }
         }
         products.addAll(newProducts);
+        selectedProducts.addAll(newProducts);
       }
     }
-    return products;
+    return selectedProducts;
   }
 
   Future<List<Product>> getProductsByCategory(Category category) async {
-    if (products.isEmpty) {
+    if (selectedProducts.isEmpty) {
       await getProducts();
     }
 
-    if (category.uuid == "0") return products; // 0 : All demektir.
-
-    return products
-        .where((element) => element.categoryUuid == category.uuid)
-        .toList();
+    if (category.uuid == "0") {
+      // 0 : mean is all.
+      selectedProducts = products;
+    } else {
+      selectedProducts = products
+          .where((element) => element.categoryUuid == category.uuid)
+          .toList();
+    }
+    return selectedProducts;
   }
 }

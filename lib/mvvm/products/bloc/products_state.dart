@@ -6,10 +6,11 @@ abstract class ProductsState extends Equatable {
 
 class LoadedState extends ProductsState {
   final List<Product> products;
-  const LoadedState({required this.products});
+  final int selectedIndex;
+  const LoadedState({required this.products, this.selectedIndex = 0});
 
   @override
-  List<Object> get props => [products];
+  List<Object> get props => [products, selectedIndex];
 }
 
 class LoadingState extends ProductsState {

@@ -26,5 +26,18 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
         ),
       );
     });
+    on<ScrollProductsEvent>((event, emit) async {
+      List<Product> products = await ProductRepository.instance.getProducts();
+      for (Product p in products) {
+        p.isSelected = false;
+      }
+      products[event.selectedIndex].isSelected = true;
+      emit(
+        LoadedState(
+          products: products,
+          selectedIndex: event.selectedIndex,
+        ),
+      );
+    });
   }
 }

@@ -1,5 +1,5 @@
 +category selected bloc a taşı
-product gezinmesi sırasında öne gelen elemen selected olup uzasın bunu bloc taşı
++product gezinmesi sırasında öne gelen elemen selected olup uzasın bunu bloc taşı
 product detail
 cart
 favori

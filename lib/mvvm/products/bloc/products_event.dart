@@ -10,6 +10,13 @@ abstract class ProductsEvent extends Equatable {
 class GetProductsEvent extends ProductsEvent {}
 
 class GetProductsByCategoryEvent extends ProductsEvent {
-  Category category;
-  GetProductsByCategoryEvent({required this.category});
+  final Category category;
+  const GetProductsByCategoryEvent({required this.category});
+}
+
+class ScrollProductsEvent extends ProductsEvent {
+  final int selectedIndex;
+  const ScrollProductsEvent({required this.selectedIndex});
+  @override
+  List<Object> get props => [selectedIndex];
 }
