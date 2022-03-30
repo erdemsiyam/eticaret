@@ -16,5 +16,21 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
         ),
       );
     });
+
+    on<SelectCategoryEvent>((event, emit) async {
+      emit(LoadingState());
+      List<Category> categories =
+          await CategoryRepository.instance.getCategories();
+      for (Category c in categories) {
+        if (c.uuid == event.selectedCategoryUuid) {
+          c.isSelected = true;
+        } else {
+          c.isSelected = false;
+        }
+      }
+      emit(
+        LoadedState(categories: categories),
+      );
+    });
   }
 }

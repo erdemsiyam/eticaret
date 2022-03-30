@@ -16,7 +16,7 @@ class CategoriesWidget extends StatefulWidget {
 }
 
 class _CategoriesWidgetState extends State<CategoriesWidget> {
-  Category? selectedCategory = Category(uuid: "0");
+  // Category? selectedCategory = Category(uuid: "0");
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,15 +36,19 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
                     .categories
                     .map(
                       (category) => CategoryIcon(
-                        isSelected: category.uuid == selectedCategory?.uuid,
+                        isSelected: category
+                            .isSelected, //category.uuid == selectedCategory?.uuid,
                         model: category,
                         onSelected: (model) {
                           BlocProvider.of<products_bloc.ProductsBloc>(context)
                               .add(products_bloc.GetProductsByCategoryEvent(
                                   category: model));
-                          setState(() {
-                            selectedCategory = model;
-                          });
+                          BlocProvider.of<CategoryBloc>(context).add(
+                              SelectCategoryEvent(
+                                  selectedCategoryUuid: model.uuid ?? ""));
+                          // setState(() {
+                          //   selectedCategory = model;
+                          // });
                           // setState(() {
                           //   AppData.categoryList.forEach((item) {
                           //     item.isSelected = false;

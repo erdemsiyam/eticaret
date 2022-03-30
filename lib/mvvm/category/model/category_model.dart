@@ -7,13 +7,14 @@ class Category extends BaseModel {
     this.uuid,
     this.pictureUuid,
     this.title,
+    this.isSelected = false,
   });
 
   String? uuid;
   String? pictureUuid;
   String? title;
   // Local Properties
-  bool isSelected = false;
+  bool isSelected;
   Uint8List? picture;
 
   @override

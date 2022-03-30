@@ -6,7 +6,8 @@ abstract class CategoryState extends Equatable {
 
 class LoadedState extends CategoryState {
   final List<Category> categories;
-  const LoadedState({required this.categories});
+  final String selectedCategoryUuid;
+  const LoadedState({required this.categories, this.selectedCategoryUuid = ""});
 
   @override
   List<Object> get props => [categories];
