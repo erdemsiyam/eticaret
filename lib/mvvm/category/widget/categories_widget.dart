@@ -36,8 +36,6 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
                     .categories
                     .map(
                       (category) => CategoryIcon(
-                        isSelected: category
-                            .isSelected, //category.uuid == selectedCategory?.uuid,
                         model: category,
                         onSelected: (model) {
                           BlocProvider.of<products_bloc.ProductsBloc>(context)

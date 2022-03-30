@@ -10,12 +10,7 @@ class CategoryIcon extends StatelessWidget {
   // final String text;
   final ValueChanged<Category> onSelected;
   final Category model;
-  final bool isSelected;
-  const CategoryIcon(
-      {Key? key,
-      required this.isSelected,
-      required this.model,
-      required this.onSelected})
+  const CategoryIcon({Key? key, required this.model, required this.onSelected})
       : super(key: key);
 
   @override
@@ -27,14 +22,14 @@ class CategoryIcon extends StatelessWidget {
         alignment: Alignment.center,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(10)),
-          color: isSelected ? LightColor.background : Colors.transparent,
+          color: model.isSelected ? LightColor.background : Colors.transparent,
           border: Border.all(
-            color: isSelected ? LightColor.orange : LightColor.grey,
-            width: isSelected ? 2 : 1,
+            color: model.isSelected ? LightColor.orange : LightColor.grey,
+            width: model.isSelected ? 2 : 1,
           ),
           boxShadow: <BoxShadow>[
             BoxShadow(
-              color: isSelected ? const Color(0xfffbf2ef) : Colors.white,
+              color: model.isSelected ? const Color(0xfffbf2ef) : Colors.white,
               blurRadius: 10,
               spreadRadius: 5,
               offset: const Offset(5, 5),
