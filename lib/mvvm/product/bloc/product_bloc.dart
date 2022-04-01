@@ -7,12 +7,20 @@ part 'product_event.dart';
 part 'product_state.dart';
 
 class ProductBloc extends Bloc<ProductEvent, ProductState> {
+  late Product resultProduct;
   ProductBloc(Product initProduct)
       : super(ProductLoadedState(product: initProduct)) {
-    on<GetProductImages>((event, emit) async {
-      Product resultProduct =
+    on<GetProductImagesEvent>((event, emit) async {
+      resultProduct =
           await ProductRepository.instance.getProductImages(event.product);
       emit(ProductLoadedState(product: resultProduct, isPicturesLoaded: true));
+    });
+    on<OnImageSelectEvent>((event, emit) async {
+      emit(ProductLoadedState(
+        product: resultProduct,
+        isPicturesLoaded: true,
+        bigPhotoSelectedIndex: event.index,
+      ));
     });
   }
 }

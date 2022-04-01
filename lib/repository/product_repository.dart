@@ -51,6 +51,9 @@ class ProductRepository {
   Future<Product> getProductImages(Product product) async {
     if (product.pictures == null) return product;
 
+    product.bigPictures?.clear();
+    product.bigPictures ??= [];
+
     for (String picUuid in product.pictures!) {
       product.bigPictures
           ?.add(await PictureService.instance.getPictureById(picUuid));

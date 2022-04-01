@@ -104,7 +104,7 @@ class ProductCard extends StatelessWidget {
                     create: (_) => ProductBloc(product),
                   ),
                 ],
-                child: ProductDetailPage(),
+                child: ProductDetailPage(product: product),
               ),
             ),
           );
