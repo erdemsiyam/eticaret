@@ -1,17 +1,14 @@
-import 'package:eticaret/mvvm/product/model/product_model.dart';
+import 'package:eticaret/mvvm/product/model/product_response_model.dart';
 import 'package:eticaret/util/base/base_model.dart';
 import 'dart:convert';
 
 class ProductsResponse extends BaseModel {
-  List<Product>? products;
+  List<ProductResponse>? products;
 
   @override
   fromJson(String jsonStr) {
-    products = List<Product>.from(
-        json.decode(jsonStr).map((x) => Product()..fromMap(x)));
-    // for (Map<String, dynamic> i in json.decode(jsonStr)) {
-    //   Product product = Product()..fromMap(i);
-    // }
+    products = List<ProductResponse>.from(
+        json.decode(jsonStr).map((x) => ProductResponse()..fromMap(x)));
   }
 
   @override

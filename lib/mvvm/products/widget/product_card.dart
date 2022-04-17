@@ -1,5 +1,5 @@
 import 'package:eticaret/mvvm/product/bloc/product_bloc.dart';
-import 'package:eticaret/mvvm/product/model/product_model.dart';
+import 'package:eticaret/mvvm/product/model/product_response_model.dart';
 import 'package:eticaret/page/product_detail_page.dart';
 import 'package:eticaret/theme/light_color.dart';
 import 'package:eticaret/widget/title_text.dart';

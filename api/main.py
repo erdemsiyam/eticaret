@@ -134,7 +134,9 @@ def get_cart_by_user(authorize:AuthJWT=Depends()):
                             if z.uuid == y.item_uuid:
                                 item = z.copy()
                                 item.cart_item_uuid = y.uuid
-                                item.selected_option = y.selected_option
+                                # item.selected_option = y.selected_option
+                                item.selected_size_option = y.selected_size_option
+                                item.selected_color_option = y.selected_color_option
                                 response_list.append(item)
     return response_list
 
@@ -162,7 +164,9 @@ def add_cart(item:Item,authorize:AuthJWT=Depends()):
                     cart_item = CartItem()
                     cart_item.uuid = str(uuid.uuid4())
                     cart_item.item_uuid = item.uuid
-                    cart_item.selected_option = item.selected_option
+                    # cart_item.selected_option = item.selected_option
+                    cart_item.selected_size_option = item.selected_size_option
+                    cart_item.selected_color_option = item.selected_color_option
                     cart_items.append(cart_item)
                     x.cart_item_uuids.append(cart_item.uuid)
                     return True
@@ -170,12 +174,14 @@ def add_cart(item:Item,authorize:AuthJWT=Depends()):
             cart_item = CartItem()
             cart_item.uuid = str(uuid.uuid4())
             cart_item.item_uuid = item.uuid
-            cart_item.selected_option = item.selected_option
+            # cart_item.selected_option = item.selected_option
+            cart_item.selected_size_option = item.selected_size_option
+            cart_item.selected_color_option = item.selected_color_option
             cart_items.append(cart_item)
             cart = Cart()
             cart.user_uuid = current_user_uuid
             cart.cart_item_uuids = [cart_item.uuid]
-            carts.append(cart)
+            # carts.append(cart)
             return True
     return False
 

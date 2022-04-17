@@ -1,5 +1,5 @@
 import 'package:eticaret/mvvm/category/model/category_model.dart';
-import 'package:eticaret/mvvm/product/model/product_model.dart';
+import 'package:eticaret/mvvm/product/model/product_response_model.dart';
 import 'package:eticaret/service/picture_service.dart';
 import 'package:eticaret/service/product_service.dart';
 
@@ -10,16 +10,18 @@ class ProductRepository {
   static ProductRepository get instance => _instance;
 
   // Property
-  List<Product> products = [];
-  List<Product> selectedProducts = []; // By Word Search or By Category select
+  List<ProductResponse> products = [];
+  List<ProductResponse> selectedProducts =
+      []; // By Word Search or By Category select
 
   // Methods
-  Future<List<Product>> getProducts() async {
+  Future<List<ProductResponse>> getProducts() async {
     if (products.isEmpty) {
-      List<Product>? newProducts = await ProductService.instance.getProducts();
+      List<ProductResponse>? newProducts =
+          await ProductService.instance.getProducts();
       if (newProducts != null) {
         // Get Pictures of Images
-        for (Product product in newProducts) {
+        for (ProductResponse product in newProducts) {
           if (product.smallPictureUuid != null) {
             product.smallPicture = await PictureService.instance
                 .getPictureById(product.smallPictureUuid!);

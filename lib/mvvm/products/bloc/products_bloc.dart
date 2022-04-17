@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:eticaret/mvvm/category/model/category_model.dart';
-import 'package:eticaret/mvvm/product/model/product_model.dart';
+import 'package:eticaret/mvvm/product/model/product_response_model.dart';
 import 'package:eticaret/repository/product_repository.dart';
 
 part 'products_event.dart';

@@ -1,6 +1,6 @@
 import 'package:eticaret/model/data.dart';
 import 'package:eticaret/mvvm/product/bloc/product_bloc.dart';
-import 'package:eticaret/mvvm/product/model/product_model.dart';
+import 'package:eticaret/mvvm/product/model/product_response_model.dart';
 import 'package:eticaret/mvvm/product/widget/big_image_widget.dart';
 import 'package:eticaret/mvvm/product/widget/like_button_widget.dart';
 import 'package:eticaret/mvvm/product/widget/small_images_widget.dart';
@@ -13,7 +13,7 @@ import 'package:eticaret/widget/extentions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductDetailPage extends StatefulWidget {
-  Product product;
+  ProductResponse product;
   ProductDetailPage({Key? key, required this.product}) : super(key: key);
 
   @override
@@ -27,9 +27,11 @@ class _ProductDetailPageState extends State<ProductDetailPage>
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<ProductBloc>(context).add(
-      GetProductImagesEvent(product: widget.product),
-    );
+
+    // TODO : Bunu kaldırdık
+    // BlocProvider.of<ProductBloc>(context).add(
+    //   GetProductImagesEvent(product: widget.product),
+    // );
     controller = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 300));
     animation = Tween<double>(begin: 0, end: 1).animate(

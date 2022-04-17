@@ -1,4 +1,4 @@
-import 'package:eticaret/mvvm/product/model/product_model.dart';
+import 'package:eticaret/mvvm/product/model/product_response_model.dart';
 import 'package:eticaret/mvvm/product/model/products_response_model.dart';
 import 'package:eticaret/util/base/base_service.dart';
 import 'package:eticaret/util/constant/service_method.dart';

@@ -66,22 +66,24 @@ item1.title = "Shoes 1"
 item1.description = "Shoes 1 Description"
 item1.price = 100
 item1.point = 3
-item1.option_types = [OptionTypes.SHOES_NUMBER,OptionTypes.COLOR]
-item1.options = [
-    ShoesNumberOption.custom_init(
-        new_value=Numbers.N40,
-        new_options=[
-            ColorOption().custom_init(new_value=Colors.BLUE),
-            ColorOption().custom_init(new_value=Colors.RED),
-        ],
-    ),
-    ShoesNumberOption.custom_init(
-        new_value=Numbers.N41,
-        new_options=[
-            ColorOption().custom_init(new_value=Colors.BLACK),
-        ],
-    ),
-]
+item1.size_options = ["40","41"]
+item1.color_options = ["BLUE","RED","BLACK"]
+# item1.option_types = [OptionTypes.SHOES_NUMBER,OptionTypes.COLOR]
+# item1.options = [
+#     ShoesNumberOption.custom_init(
+#         new_value=Numbers.N40,
+#         new_options=[
+#             ColorOption().custom_init(new_value=Colors.BLUE),
+#             ColorOption().custom_init(new_value=Colors.RED),
+#         ],
+#     ),
+#     ShoesNumberOption.custom_init(
+#         new_value=Numbers.N41,
+#         new_options=[
+#             ColorOption().custom_init(new_value=Colors.BLACK),
+#         ],
+#     ),
+# ]
 items.append(item1)
 item2 = Item()
 item2.uuid = "5"
@@ -92,22 +94,24 @@ item2.title = "Shoes 2"
 item2.description = "Shoes 2 Description"
 item2.price = 200
 item2.point = 4
-item2.option_types = [OptionTypes.SHOES_NUMBER,OptionTypes.COLOR]
-item2.options = [
-    ShoesNumberOption.custom_init(
-        new_value=Numbers.N40,
-        new_options=[
-            ColorOption().custom_init(new_value=Colors.ORANGE),
-            ColorOption().custom_init(new_value=Colors.PINK),
-        ],
-    ),
-    ShoesNumberOption.custom_init(
-        new_value=Numbers.N41,
-        new_options=[
-            ColorOption().custom_init(new_value=Colors.WHITE),
-        ],
-    ),
-]
+item2.size_options = ["40","41"]
+item2.color_options = ["ORANGE","PINK","WHITE"]
+# item2.option_types = [OptionTypes.SHOES_NUMBER,OptionTypes.COLOR]
+# item2.options = [
+#     ShoesNumberOption.custom_init(
+#         new_value=Numbers.N40,
+#         new_options=[
+#             ColorOption().custom_init(new_value=Colors.ORANGE),
+#             ColorOption().custom_init(new_value=Colors.PINK),
+#         ],
+#     ),
+#     ShoesNumberOption.custom_init(
+#         new_value=Numbers.N41,
+#         new_options=[
+#             ColorOption().custom_init(new_value=Colors.WHITE),
+#         ],
+#     ),
+# ]
 items.append(item2)
 item3 = Item()
 item3.uuid = "6"
@@ -118,27 +122,29 @@ item3.title = "Shoes 3"
 item3.description = "Shoes 3 Description"
 item3.price = 250
 item3.point = 5
-item3.option_types = [OptionTypes.SHOES_NUMBER,OptionTypes.COLOR]
-item3.options = [
-    ShoesNumberOption.custom_init(
-        new_value=Numbers.N39,
-        new_options=[
-            ColorOption().custom_init(new_value=Colors.ORANGE),
-        ],
-    ),
-    ShoesNumberOption.custom_init(
-        new_value=Numbers.N41,
-        new_options=[
-            ColorOption().custom_init(new_value=Colors.YELLOW),
-        ],
-    ),
-    ShoesNumberOption.custom_init(
-        new_value=Numbers.N44,
-        new_options=[
-            ColorOption().custom_init(new_value=Colors.BLACK),
-        ],
-    ),
-]
+item3.size_options = ["39","41","44"]
+item3.color_options = ["ORANGE","YELLOW","BLACK"]
+# item3.option_types = [OptionTypes.SHOES_NUMBER,OptionTypes.COLOR]
+# item3.options = [
+#     ShoesNumberOption.custom_init(
+#         new_value=Numbers.N39,
+#         new_options=[
+#             ColorOption().custom_init(new_value=Colors.ORANGE),
+#         ],
+#     ),
+#     ShoesNumberOption.custom_init(
+#         new_value=Numbers.N41,
+#         new_options=[
+#             ColorOption().custom_init(new_value=Colors.YELLOW),
+#         ],
+#     ),
+#     ShoesNumberOption.custom_init(
+#         new_value=Numbers.N44,
+#         new_options=[
+#             ColorOption().custom_init(new_value=Colors.BLACK),
+#         ],
+#     ),
+# ]
 items.append(item3)
 item4 = Item()
 item4.uuid = "7"
@@ -149,27 +155,29 @@ item4.title = "Jacket 1"
 item4.description = "Jacket 1 Description"
 item4.price = 300
 item4.point = 3
-item4.option_types = [OptionTypes.BODY_NUMBER,OptionTypes.SIZE]
-item4.options = [
-    BodyNumberOption.custom_init(
-        new_value=Numbers.N54,
-        new_options=[
-            SizeOption().custom_init(new_value=Sizes.SMALL),
-        ],
-    ),
-    BodyNumberOption.custom_init(
-        new_value=Numbers.N60,
-        new_options=[
-            SizeOption().custom_init(new_value=Sizes.MEDIUM),
-        ],
-    ),
-    BodyNumberOption.custom_init(
-        new_value=Numbers.N64,
-        new_options=[
-            SizeOption().custom_init(new_value=Sizes.LARGE),
-        ],
-    ),
-]
+item4.size_options = ["54","60","64"]
+item4.color_options = ["BLUE","RED","BLACK"]
+# item4.option_types = [OptionTypes.BODY_NUMBER,OptionTypes.SIZE]
+# item4.options = [
+#     BodyNumberOption.custom_init(
+#         new_value=Numbers.N54,
+#         new_options=[
+#             SizeOption().custom_init(new_value=Sizes.SMALL),
+#         ],
+#     ),
+#     BodyNumberOption.custom_init(
+#         new_value=Numbers.N60,
+#         new_options=[
+#             SizeOption().custom_init(new_value=Sizes.MEDIUM),
+#         ],
+#     ),
+#     BodyNumberOption.custom_init(
+#         new_value=Numbers.N64,
+#         new_options=[
+#             SizeOption().custom_init(new_value=Sizes.LARGE),
+#         ],
+#     ),
+# ]
 items.append(item4)
 item5 = Item()
 item5.uuid = "8"
@@ -180,27 +188,29 @@ item5.title = "Jacket 2"
 item5.description = "Jacket 2 Description"
 item5.price = 350
 item5.point = 4
-item5.option_types = [OptionTypes.BODY_NUMBER,OptionTypes.SIZE]
-item5.options = [
-    BodyNumberOption.custom_init(
-        new_value=Numbers.N54,
-        new_options=[
-            SizeOption().custom_init(new_value=Sizes.SMALL),
-        ],
-    ),
-    BodyNumberOption.custom_init(
-        new_value=Numbers.N60,
-        new_options=[
-            SizeOption().custom_init(new_value=Sizes.MEDIUM),
-        ],
-    ),
-    BodyNumberOption.custom_init(
-        new_value=Numbers.N64,
-        new_options=[
-            SizeOption().custom_init(new_value=Sizes.LARGE),
-        ],
-    ),
-]
+item5.size_options = ["54","60","64"]
+item5.color_options = ["BLUE","RED","BLACK"]
+# item5.option_types = [OptionTypes.BODY_NUMBER,OptionTypes.SIZE]
+# item5.options = [
+#     BodyNumberOption.custom_init(
+#         new_value=Numbers.N54,
+#         new_options=[
+#             SizeOption().custom_init(new_value=Sizes.SMALL),
+#         ],
+#     ),
+#     BodyNumberOption.custom_init(
+#         new_value=Numbers.N60,
+#         new_options=[
+#             SizeOption().custom_init(new_value=Sizes.MEDIUM),
+#         ],
+#     ),
+#     BodyNumberOption.custom_init(
+#         new_value=Numbers.N64,
+#         new_options=[
+#             SizeOption().custom_init(new_value=Sizes.LARGE),
+#         ],
+#     ),
+# ]
 items.append(item5)
 item6 = Item()
 item6.uuid = "9"
@@ -211,27 +221,29 @@ item6.title = "Jacket 3"
 item6.description = "Jacket 3 Description"
 item6.price = 400
 item6.point = 5
-item6.option_types = [OptionTypes.BODY_NUMBER,OptionTypes.SIZE]
-item6.options = [
-    BodyNumberOption.custom_init(
-        new_value=Numbers.N54,
-        new_options=[
-            SizeOption().custom_init(new_value=Sizes.SMALL),
-        ],
-    ),
-    BodyNumberOption.custom_init(
-        new_value=Numbers.N60,
-        new_options=[
-            SizeOption().custom_init(new_value=Sizes.MEDIUM),
-        ],
-    ),
-    BodyNumberOption.custom_init(
-        new_value=Numbers.N64,
-        new_options=[
-            SizeOption().custom_init(new_value=Sizes.LARGE),
-        ],
-    ),
-]
+item6.size_options = ["54","60","64"]
+item6.color_options = ["BLUE","RED","BLACK"]
+# item6.option_types = [OptionTypes.BODY_NUMBER,OptionTypes.SIZE]
+# item6.options = [
+#     BodyNumberOption.custom_init(
+#         new_value=Numbers.N54,
+#         new_options=[
+#             SizeOption().custom_init(new_value=Sizes.SMALL),
+#         ],
+#     ),
+#     BodyNumberOption.custom_init(
+#         new_value=Numbers.N60,
+#         new_options=[
+#             SizeOption().custom_init(new_value=Sizes.MEDIUM),
+#         ],
+#     ),
+#     BodyNumberOption.custom_init(
+#         new_value=Numbers.N64,
+#         new_options=[
+#             SizeOption().custom_init(new_value=Sizes.LARGE),
+#         ],
+#     ),
+# ]
 items.append(item6)
 item7 = Item()
 item7.uuid = "10"
@@ -242,27 +254,29 @@ item7.title = "Watch 1"
 item7.description = "Watch 1 Description"
 item7.price = 120
 item7.point = 3
-item7.option_types = [OptionTypes.WRIST_NUMBER,OptionTypes.MATERIAL]
-item7.options = [
-    WristNumberOption.custom_init(
-        new_value=Numbers.N10,
-        new_options=[
-            MaterialOption().custom_init(new_value=Materials.GOLD),
-        ],
-    ),
-    WristNumberOption.custom_init(
-        new_value=Numbers.N11,
-        new_options=[
-            MaterialOption().custom_init(new_value=Materials.PLATINIUM),
-        ],
-    ),
-    WristNumberOption.custom_init(
-        new_value=Numbers.N12,
-        new_options=[
-            MaterialOption().custom_init(new_value=Materials.SILVER),
-        ],
-    ),
-]
+item7.size_options = ["54","60","64"]
+item7.color_options = ["BLUE","RED","BLACK"]
+# item7.option_types = [OptionTypes.WRIST_NUMBER,OptionTypes.MATERIAL]
+# item7.options = [
+#     WristNumberOption.custom_init(
+#         new_value=Numbers.N10,
+#         new_options=[
+#             MaterialOption().custom_init(new_value=Materials.GOLD),
+#         ],
+#     ),
+#     WristNumberOption.custom_init(
+#         new_value=Numbers.N11,
+#         new_options=[
+#             MaterialOption().custom_init(new_value=Materials.PLATINIUM),
+#         ],
+#     ),
+#     WristNumberOption.custom_init(
+#         new_value=Numbers.N12,
+#         new_options=[
+#             MaterialOption().custom_init(new_value=Materials.SILVER),
+#         ],
+#     ),
+# ]
 items.append(item7)
 item8 = Item()
 item8.uuid = "11"
@@ -273,27 +287,29 @@ item8.title = "Watch 2"
 item8.description = "Watch 2 Description"
 item8.price = 160
 item8.point = 4
-item8.option_types = [OptionTypes.WRIST_NUMBER,OptionTypes.MATERIAL]
-item8.options = [
-    WristNumberOption.custom_init(
-        new_value=Numbers.N10,
-        new_options=[
-            MaterialOption().custom_init(new_value=Materials.GOLD),
-        ],
-    ),
-    WristNumberOption.custom_init(
-        new_value=Numbers.N11,
-        new_options=[
-            MaterialOption().custom_init(new_value=Materials.PLATINIUM),
-        ],
-    ),
-    WristNumberOption.custom_init(
-        new_value=Numbers.N12,
-        new_options=[
-            MaterialOption().custom_init(new_value=Materials.SILVER),
-        ],
-    ),
-]
+item8.size_options = ["54","60","64"]
+item8.color_options = ["BLUE","RED","BLACK"]
+# item8.option_types = [OptionTypes.WRIST_NUMBER,OptionTypes.MATERIAL]
+# item8.options = [
+#     WristNumberOption.custom_init(
+#         new_value=Numbers.N10,
+#         new_options=[
+#             MaterialOption().custom_init(new_value=Materials.GOLD),
+#         ],
+#     ),
+#     WristNumberOption.custom_init(
+#         new_value=Numbers.N11,
+#         new_options=[
+#             MaterialOption().custom_init(new_value=Materials.PLATINIUM),
+#         ],
+#     ),
+#     WristNumberOption.custom_init(
+#         new_value=Numbers.N12,
+#         new_options=[
+#             MaterialOption().custom_init(new_value=Materials.SILVER),
+#         ],
+#     ),
+# ]
 items.append(item8)
 item9 = Item()
 item9.uuid = "12"
@@ -304,25 +320,27 @@ item9.title = "Watch 3"
 item9.description = "Watch 3 Description"
 item9.price = 180
 item9.point = 5
-item9.option_types = [OptionTypes.WRIST_NUMBER,OptionTypes.MATERIAL]
-item9.options = [
-    WristNumberOption.custom_init(
-        new_value=Numbers.N10,
-        new_options=[
-            MaterialOption().custom_init(new_value=Materials.GOLD),
-        ],
-    ),
-    WristNumberOption.custom_init(
-        new_value=Numbers.N11,
-        new_options=[
-            MaterialOption().custom_init(new_value=Materials.PLATINIUM),
-        ],
-    ),
-    WristNumberOption.custom_init(
-        new_value=Numbers.N12,
-        new_options=[
-            MaterialOption().custom_init(new_value=Materials.SILVER),
-        ],
-    ),
-]
+item9.size_options = ["54","60","64"]
+item9.color_options = ["BLUE","RED","BLACK"]
+# item9.option_types = [OptionTypes.WRIST_NUMBER,OptionTypes.MATERIAL]
+# item9.options = [
+#     WristNumberOption.custom_init(
+#         new_value=Numbers.N10,
+#         new_options=[
+#             MaterialOption().custom_init(new_value=Materials.GOLD),
+#         ],
+#     ),
+#     WristNumberOption.custom_init(
+#         new_value=Numbers.N11,
+#         new_options=[
+#             MaterialOption().custom_init(new_value=Materials.PLATINIUM),
+#         ],
+#     ),
+#     WristNumberOption.custom_init(
+#         new_value=Numbers.N12,
+#         new_options=[
+#             MaterialOption().custom_init(new_value=Materials.SILVER),
+#         ],
+#     ),
+# ]
 items.append(item9)

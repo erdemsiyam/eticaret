@@ -27,63 +27,63 @@ class Category(BaseModel):
     title:Optional[str]
 
 
-class Option(BaseModel):
-    type:Optional[str]
-    value:Optional[str]
-    options:Optional[List[object]]
-    @classmethod
-    def custom_init(cls, new_value:Optional[str], new_options: Optional[List[object]] = []):
-        return cls(value=new_value,options = new_options)
-class OptionTypes:
-    SHOES_NUMBER = "SHOES_NUMBER"
-    BODY_NUMBER = "BODY_NUMBER"
-    WRIST_NUMBER = "WRIST_NUMBER"
-    SIZE = "SIZE"
-    COLOR = "COLOR"
-    MATERIAL = "MATERIAL"
-class ShoesNumberOption(Option):
-    type = OptionTypes.SHOES_NUMBER
-class BodyNumberOption(Option):
-    type = OptionTypes.BODY_NUMBER
-class WristNumberOption(Option):
-    type = OptionTypes.WRIST_NUMBER
-class SizeOption(Option):
-    type = OptionTypes.SIZE
-class ColorOption(Option):
-    type = OptionTypes.COLOR
-class MaterialOption(Option):
-    type = OptionTypes.MATERIAL
-class Sizes:
-    SMALL = "SMALL"
-    MEDIUM = "MEDIUM"
-    LARGE = "LARGE"
-    XLARGE = "XLARGE"
-class Numbers:
-    N10 = "10"
-    N11 = "11"
-    N12 = "12"
-    N36 = "36"
-    N38 = "38"
-    N39 = "39"
-    N40 = "40"
-    N41 = "41"
-    N42 = "42"
-    N44 = "44"
-    N54 = "54"
-    N60 = "60"
-    N64 = "64"
-class Colors:
-    BLUE = "BLUE"
-    RED = "RED"
-    WHITE = "WHITE"
-    ORANGE = "ORANGE"
-    BLACK = "BLACK"
-    PINK = "PINK"
-    YELLOW = "YELLOW"
-class Materials:
-    GOLD = "GOLD"
-    PLATINIUM = "PLATINIUM"
-    SILVER = "SILVER"
+# class Option(BaseModel):
+#     type:Optional[str]
+#     value:Optional[str]
+#     options:Optional[List[object]]
+#     @classmethod
+#     def custom_init(cls, new_value:Optional[str], new_options: Optional[List[object]] = []):
+#         return cls(value=new_value,options = new_options)
+# class OptionTypes:
+#     SHOES_NUMBER = "SHOES_NUMBER"
+#     BODY_NUMBER = "BODY_NUMBER"
+#     WRIST_NUMBER = "WRIST_NUMBER"
+#     SIZE = "SIZE"
+#     COLOR = "COLOR"
+#     MATERIAL = "MATERIAL"
+# class ShoesNumberOption(Option):
+#     type = OptionTypes.SHOES_NUMBER
+# class BodyNumberOption(Option):
+#     type = OptionTypes.BODY_NUMBER
+# class WristNumberOption(Option):
+#     type = OptionTypes.WRIST_NUMBER
+# class SizeOption(Option):
+#     type = OptionTypes.SIZE
+# class ColorOption(Option):
+#     type = OptionTypes.COLOR
+# class MaterialOption(Option):
+#     type = OptionTypes.MATERIAL
+# class Sizes:
+#     SMALL = "SMALL"
+#     MEDIUM = "MEDIUM"
+#     LARGE = "LARGE"
+#     XLARGE = "XLARGE"
+# class Numbers:
+#     N10 = "10"
+#     N11 = "11"
+#     N12 = "12"
+#     N36 = "36"
+#     N38 = "38"
+#     N39 = "39"
+#     N40 = "40"
+#     N41 = "41"
+#     N42 = "42"
+#     N44 = "44"
+#     N54 = "54"
+#     N60 = "60"
+#     N64 = "64"
+# class Colors:
+#     BLUE = "BLUE"
+#     RED = "RED"
+#     WHITE = "WHITE"
+#     ORANGE = "ORANGE"
+#     BLACK = "BLACK"
+#     PINK = "PINK"
+#     YELLOW = "YELLOW"
+# class Materials:
+#     GOLD = "GOLD"
+#     PLATINIUM = "PLATINIUM"
+#     SILVER = "SILVER"
 
 
 class Item(BaseModel):
@@ -97,9 +97,13 @@ class Item(BaseModel):
     point:Optional[int]
     # options:Optional[list[Option]]
     # selected_option:Optional[Option] # Sepet için eklenildi, kolaylık olsun diye
-    option_types:Optional[List[str]]
-    options:Optional[List[Option]]
-    selected_option:Optional[Option]
+    # option_types:Optional[List[str]]
+    # options:Optional[List[Option]]
+    # selected_option:Optional[Option]
+    size_options:Optional[List[str]]
+    color_options:Optional[List[str]]
+    selected_size_option:Optional[str]
+    selected_color_option:Optional[str]
     cart_item_uuid:Optional[str] # Sepete eklenirse, o sepetteki idsi buraya koyulur, sadece sepet için eklenildi bu alan kolaylık olsun diye
 
 
@@ -111,8 +115,9 @@ class Favorite(BaseModel):
 class CartItem(BaseModel):
     uuid:Optional[str]
     item_uuid:Optional[str]
-    selected_option:Optional[Option]
-
+    # selected_option:Optional[Option]
+    selected_size_option:str
+    selected_color_option:str
 
 class Cart(BaseModel):
     user_uuid:Optional[str]
