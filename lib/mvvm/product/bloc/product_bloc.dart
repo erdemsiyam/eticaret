@@ -10,7 +10,6 @@ part 'product_state.dart';
 class ProductBloc extends Bloc<ProductEvent, ProductState> {
   ProductBloc(ProductResponse initProduct) : super(const ProductLoadedState()) {
     on<OnFavoriteChangeEvent>((event, emit) async {
-      // TODO : fav gönder
       if (event.isAdded) {
         ProductRepository.instance.addFavorite(event.product);
       } else {

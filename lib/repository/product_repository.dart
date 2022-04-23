@@ -44,9 +44,15 @@ class ProductRepository {
 
   addFavorite(ProductResponse product) async {
     await ProductService.instance.addFavorite(product);
+    // TODO : products listesini güncelle
   }
 
   deleteFavorite(ProductResponse product) async {
     await ProductService.instance.deleteFavorite(product);
+    // TODO : products listesini güncelle
   }
+
+  // TODO : getFavorites
+  // TODO : getCart
+
 }
