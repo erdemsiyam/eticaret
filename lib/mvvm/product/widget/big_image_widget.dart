@@ -8,8 +8,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class BigImageWidget extends StatelessWidget {
   ProductResponse product;
   final Animation<double> animation;
-  BigImageWidget({Key? key, required this.product, required this.animation})
-      : super(key: key);
+  int selectedImageIndex;
+  BigImageWidget({
+    Key? key,
+    required this.product,
+    required this.animation,
+    required this.selectedImageIndex,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,22 +35,23 @@ class BigImageWidget extends StatelessWidget {
             fontSize: 160,
             color: LightColor.lightGrey,
           ),
-          BlocBuilder(
-            bloc: BlocProvider.of<ProductBloc>(context),
-            builder: (context, state) => _image(state as ProductState),
-          ),
+          Image.network(product.images![selectedImageIndex]),
+          // BlocBuilder(
+          //   bloc: BlocProvider.of<ProductBloc>(context),
+          //   builder: (context, state) => _image(state as ProductState),
+          // ),
         ],
       ),
     );
   }
 
-  Widget _image(ProductState state) {
-    if (state is ProductLoadedState &&
-        // state.isPicturesLoaded &&
-        product.images != null) {
-      return Image.network(product.images![state.bigPhotoSelectedIndex]);
-    } else {
-      return const SizedBox();
-    }
-  }
+  // Widget _image(ProductState state) {
+  //   if (state is ProductLoadedState &&
+  //       // state.isPicturesLoaded &&
+  //       product.images != null) {
+  //     return Image.network(product.images![state.bigPhotoSelectedIndex]);
+  //   } else {
+  //     return const SizedBox();
+  //   }
+  // }
 }

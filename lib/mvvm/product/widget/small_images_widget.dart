@@ -9,8 +9,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class SmallImagesWidget extends StatelessWidget {
   ProductResponse product;
   final Animation<double> animation;
-  SmallImagesWidget({Key? key, required this.product, required this.animation})
-      : super(key: key);
+  void Function(int) onImageIndexSelected;
+  SmallImagesWidget({
+    Key? key,
+    required this.product,
+    required this.animation,
+    required this.onImageIndexSelected,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -73,8 +78,9 @@ class SmallImagesWidget extends StatelessWidget {
           child: Image.network(imageUrl),
         ).ripple(
           () {
-            BlocProvider.of<ProductBloc>(context)
-                .add(OnImageSelectEvent(index: index));
+            // BlocProvider.of<ProductBloc>(context)
+            //     .add(OnImageSelectEvent(index: index));
+            onImageIndexSelected.call(index);
           },
           borderRadius: const BorderRadius.all(
             Radius.circular(13),

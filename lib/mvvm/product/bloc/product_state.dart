@@ -5,19 +5,8 @@ abstract class ProductState extends Equatable {
 }
 
 class ProductLoadedState extends ProductState {
-  final int bigPhotoSelectedIndex;
-  // final int selectedSizeOptionIndex;
-  // final int selectedColorOptionIndex;
-  const ProductLoadedState({
-    this.bigPhotoSelectedIndex = 0,
-    // this.selectedSizeOptionIndex = 0,
-    // this.selectedColorOptionIndex = 0,
-  });
+  const ProductLoadedState();
 
   @override
-  List<Object> get props => [
-        bigPhotoSelectedIndex,
-        // selectedSizeOptionIndex,
-        // selectedColorOptionIndex,
-      ];
+  List<Object> get props => [];
 }

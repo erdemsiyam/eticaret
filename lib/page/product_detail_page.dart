@@ -15,7 +15,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductDetailPage extends StatefulWidget {
   ProductResponse product;
-  ProductDetailPage({Key? key, required this.product}) : super(key: key);
+  int selectedImageIndex;
+  int selectedSizeIndex;
+  int selectedColorIndex;
+  ProductDetailPage({
+    Key? key,
+    required this.product,
+    this.selectedImageIndex = 0,
+    this.selectedSizeIndex = 0,
+    this.selectedColorIndex = 0,
+  }) : super(key: key);
 
   @override
   _ProductDetailPageState createState() => _ProductDetailPageState();
@@ -63,8 +72,14 @@ class _ProductDetailPageState extends State<ProductDetailPage>
               _picturesSection(),
               ProductDetailWidget(
                 product: widget.product,
-                onSelectedSizeOptionChanged: (p0) {},
-                onSelectedColorOptionChanged: (p0) {},
+                onSelectedSizeOptionChanged: (p0) {
+                  widget.selectedSizeIndex = p0;
+                },
+                onSelectedColorOptionChanged: (p0) {
+                  widget.selectedColorIndex = p0;
+                },
+                selectedSizeIndex: widget.selectedSizeIndex,
+                selectedColorIndex: widget.selectedColorIndex,
               ),
             ],
           ),
@@ -86,8 +101,20 @@ class _ProductDetailPageState extends State<ProductDetailPage>
     return Column(
       children: <Widget>[
         _appBar(),
-        BigImageWidget(product: widget.product, animation: animation),
-        SmallImagesWidget(product: widget.product, animation: animation),
+        BigImageWidget(
+          product: widget.product,
+          animation: animation,
+          selectedImageIndex: widget.selectedImageIndex,
+        ),
+        SmallImagesWidget(
+          product: widget.product,
+          animation: animation,
+          onImageIndexSelected: (p0) {
+            setState(() {
+              widget.selectedImageIndex = p0;
+            });
+          },
+        ),
       ],
     );
   }
