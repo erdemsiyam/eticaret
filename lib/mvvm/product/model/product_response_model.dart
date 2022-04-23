@@ -13,9 +13,19 @@ class ProductResponse extends BaseModel {
     this.description,
     this.price,
     this.point,
-    this.optionTypes, // new
-    this.options, // changed
-    this.selectedOption,
+    // this.optionTypes, // new
+    // this.options, // changed
+    this.sizeOptions,
+    this.colorOptions,
+    this.selectedSizeOption,
+    this.selectedColorOption,
+
+    // size_options:Optional[List[str]]
+    // color_options:Optional[List[str]]
+    // selected_size_option:Optional[str]
+    // selected_color_option:Optional[str]
+
+    // this.selectedOption,
     this.cartItemUuid,
   });
 
@@ -27,9 +37,14 @@ class ProductResponse extends BaseModel {
   String? description;
   int? price;
   int? point;
-  List<OptionType>? optionTypes; // new
-  List<OptionResponse>? options; // Changed
-  OptionResponse? selectedOption;
+  List<String>? sizeOptions;
+  List<String>? colorOptions;
+  String? selectedSizeOption;
+  String? selectedColorOption;
+  // List<OptionType>? optionTypes; // new
+  // List<OptionResponse>? options; // Changed
+  // OptionResponse? selectedOption;
+
   String? cartItemUuid;
   // Local Properties
   // Uint8List? smallPicture; // deleted
@@ -55,15 +70,22 @@ class ProductResponse extends BaseModel {
         "description": description,
         "price": price,
         "point": point,
-        "option_types": List<dynamic>.from(
-          (optionTypes != null)
-              ? optionTypes!.map((x) => optionTypeValues.reverse[x])
-              : [],
-        ), // new
-        "options": List<dynamic>.from(
-          (options != null) ? options!.map((x) => x.toMap()) : [],
-        ), // changed
-        "selected_option": selectedOption,
+        // "option_types": List<dynamic>.from(
+        //   (optionTypes != null)
+        //       ? optionTypes!.map((x) => optionTypeValues.reverse[x])
+        //       : [],
+        // ), // new
+        // "options": List<dynamic>.from(
+        //   (options != null) ? options!.map((x) => x.toMap()) : [],
+        // ), // changed
+        // "selected_option": selectedOption,
+
+        "size_options": List<dynamic>.from(
+            (sizeOptions != null) ? sizeOptions!.map((x) => x) : []),
+        "color_options": List<dynamic>.from(
+            (colorOptions != null) ? colorOptions!.map((x) => x) : []),
+        "selected_size_option": selectedSizeOption,
+        "selected_color_option": selectedColorOption,
         "cart_item_uuid": cartItemUuid,
       },
     );
@@ -79,15 +101,19 @@ class ProductResponse extends BaseModel {
     description = map["description"];
     price = map["price"];
     point = map["point"];
-    optionTypes = List<OptionType>.from(
-      map["option_types"].map((x) => optionTypeValues.map[x]),
-    );
-    options = List<OptionResponse>.from(
-      map["options"].map((x) => OptionResponse()..fromMap(x)),
-    );
-    selectedOption = (map["selected_option"] != null)
-        ? (OptionResponse()..fromMap(map["selected_option"]))
-        : null;
+    // optionTypes = List<OptionType>.from(
+    //   map["option_types"].map((x) => optionTypeValues.map[x]),
+    // );
+    // options = List<OptionResponse>.from(
+    //   map["options"].map((x) => OptionResponse()..fromMap(x)),
+    // );
+    // selectedOption = (map["selected_option"] != null)
+    //     ? (OptionResponse()..fromMap(map["selected_option"]))
+    //     : null;
+    sizeOptions = List<String>.from(map["size_options"].map((x) => x));
+    colorOptions = List<String>.from(map["color_options"].map((x) => x));
+    selectedSizeOption = map["selected_size_option"];
+    selectedColorOption = map["selected_color_option"];
     cartItemUuid = map["cart_item_uuid"];
   }
 }
@@ -123,72 +149,72 @@ class ProductResponse extends BaseModel {
 //   }
 // }
 
-enum OptionType {
-  SHOES_NUMBER,
-  BODY_NUMBER,
-  WRIST_NUMBER,
-  COLOR,
-  SIZE,
-  MATERIAL
-}
+// enum OptionType {
+//   SHOES_NUMBER,
+//   BODY_NUMBER,
+//   WRIST_NUMBER,
+//   COLOR,
+//   SIZE,
+//   MATERIAL
+// }
 
-final optionTypeValues = EnumValues<OptionType>({
-  "BODY_NUMBER": OptionType.BODY_NUMBER,
-  "COLOR": OptionType.COLOR,
-  "MATERIAL": OptionType.MATERIAL,
-  "SHOES_NUMBER": OptionType.SHOES_NUMBER,
-  "SIZE": OptionType.SIZE,
-  "WRIST_NUMBER": OptionType.WRIST_NUMBER
-});
+// final optionTypeValues = EnumValues<OptionType>({
+//   "BODY_NUMBER": OptionType.BODY_NUMBER,
+//   "COLOR": OptionType.COLOR,
+//   "MATERIAL": OptionType.MATERIAL,
+//   "SHOES_NUMBER": OptionType.SHOES_NUMBER,
+//   "SIZE": OptionType.SIZE,
+//   "WRIST_NUMBER": OptionType.WRIST_NUMBER
+// });
 
-class OptionResponse extends BaseModel {
-  OptionResponse({
-    this.type,
-    this.value,
-    this.options,
-  });
+// class OptionResponse extends BaseModel {
+//   OptionResponse({
+//     this.type,
+//     this.value,
+//     this.options,
+//   });
 
-  OptionType? type;
-  String? value;
-  List<OptionResponse>? options;
+//   OptionType? type;
+//   String? value;
+//   List<OptionResponse>? options;
 
-  @override
-  fromJson(String jsonStr) {
-    fromMap(json.decode(jsonStr));
-  }
+//   @override
+//   fromJson(String jsonStr) {
+//     fromMap(json.decode(jsonStr));
+//   }
 
-  @override
-  fromMap(Map<String, dynamic> map) {
-    type = optionTypeValues.map[map["type"]];
-    value = map["value"];
-    options = List<OptionResponse>.from(
-        map["options"].map((x) => OptionResponse()..fromMap(x)));
-  }
+//   @override
+//   fromMap(Map<String, dynamic> map) {
+//     type = optionTypeValues.map[map["type"]];
+//     value = map["value"];
+//     options = List<OptionResponse>.from(
+//         map["options"].map((x) => OptionResponse()..fromMap(x)));
+//   }
 
-  @override
-  String toJson() {
-    return json.encode(toMap());
-  }
+//   @override
+//   String toJson() {
+//     return json.encode(toMap());
+//   }
 
-  Map<String, dynamic> toMap() {
-    return {
-      "type": optionTypeValues.reverse[type],
-      "value": value,
-      "options": List<dynamic>.from(
-        (options != null) ? options!.map((x) => x.toMap()) : [],
-      ),
-    };
-  }
-}
+//   Map<String, dynamic> toMap() {
+//     return {
+//       "type": optionTypeValues.reverse[type],
+//       "value": value,
+//       "options": List<dynamic>.from(
+//         (options != null) ? options!.map((x) => x.toMap()) : [],
+//       ),
+//     };
+//   }
+// }
 
-class EnumValues<T> {
-  Map<String, T> map;
-  Map<T, String>? reverseMap;
+// class EnumValues<T> {
+//   Map<String, T> map;
+//   Map<T, String>? reverseMap;
 
-  EnumValues(this.map);
+//   EnumValues(this.map);
 
-  Map<T, String> get reverse {
-    reverseMap ??= map.map((k, v) => MapEntry(v, k));
-    return reverseMap!;
-  }
-}
+//   Map<T, String> get reverse {
+//     reverseMap ??= map.map((k, v) => MapEntry(v, k));
+//     return reverseMap!;
+//   }
+// }

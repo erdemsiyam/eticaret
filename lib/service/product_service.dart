@@ -11,9 +11,9 @@ class ProductService extends BaseService {
   static ProductService get instance => _instance;
 
   // Methods
-  Future<List<Product>?> getProducts() async {
+  Future<List<ProductResponse>?> getProducts() async {
     ProductsResponse productsResponse =
-        await request<Product, ProductsResponse>(
+        await request<ProductsResponse, ProductsResponse>(
       responseModel: ProductsResponse(),
       serviceMethod: ServiceMethod.GET_PRODUCTS,
     );

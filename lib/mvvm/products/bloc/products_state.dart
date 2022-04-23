@@ -5,7 +5,7 @@ abstract class ProductsState extends Equatable {
 }
 
 class LoadedState extends ProductsState {
-  final List<Product> products;
+  final List<ProductResponse> products;
   final int selectedIndex;
   const LoadedState({required this.products, this.selectedIndex = 0});
 

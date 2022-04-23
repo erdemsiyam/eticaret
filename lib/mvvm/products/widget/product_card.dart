@@ -8,8 +8,8 @@ import 'package:eticaret/widget/extentions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductCard extends StatelessWidget {
-  final Product product;
-  final ValueChanged<Product> onSelected;
+  final ProductResponse product;
+  final ValueChanged<ProductResponse> onSelected;
   const ProductCard({Key? key, required this.product, required this.onSelected})
       : super(key: key);
 
@@ -66,10 +66,15 @@ class ProductCard extends StatelessWidget {
                         radius: 40,
                         backgroundColor: LightColor.orange.withAlpha(40),
                       ),
-                      (product.smallPicture != null)
+                      // (product.smallPicture != null)
+                      //     ? ClipRRect(
+                      //         borderRadius: BorderRadius.circular(16.0),
+                      //         child: Image.memory(product.smallPicture!))
+                      //     : const SizedBox(),
+                      (product.smallImage != null)
                           ? ClipRRect(
                               borderRadius: BorderRadius.circular(16.0),
-                              child: Image.memory(product.smallPicture!))
+                              child: Image.network(product.smallImage!))
                           : const SizedBox(),
                     ],
                   ),

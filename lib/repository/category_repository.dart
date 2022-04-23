@@ -17,12 +17,13 @@ class CategoryRepository {
       List<Category>? newCategories =
           await CategoryService.instance.getCategories();
       if (newCategories != null) {
-        for (Category category in newCategories) {
-          if (category.pictureUuid != null) {
-            category.picture = await PictureService.instance
-                .getPictureById(category.pictureUuid!);
-          }
-        }
+        // Category resimleri çekilir
+        // for (Category category in newCategories) {
+        //   if (category.pictureUuid != null) {
+        //     category.picture = await PictureService.instance
+        //         .getPictureById(category.pictureUuid!);
+        //   }
+        // }
         categories.add(Category(uuid: "0", title: "All", isSelected: true));
         categories.addAll(newCategories);
       }

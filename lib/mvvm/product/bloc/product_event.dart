@@ -19,3 +19,18 @@ class OnImageSelectEvent extends ProductEvent {
   @override
   List<Object> get props => [index];
 }
+
+// class OnOptionSelectEvent extends ProductEvent {
+//   final int selectedSizeOptionIndex;
+//   final int selectedColorOptionIndex;
+//   const OnOptionSelectEvent({
+//     required this.selectedSizeOptionIndex,
+//     required this.selectedColorOptionIndex,
+//   });
+
+//   @override
+//   List<Object> get props => [
+//         selectedSizeOptionIndex,
+//         selectedColorOptionIndex,
+//       ];
+// }

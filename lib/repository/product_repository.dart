@@ -21,12 +21,12 @@ class ProductRepository {
           await ProductService.instance.getProducts();
       if (newProducts != null) {
         // Get Pictures of Images
-        for (ProductResponse product in newProducts) {
-          if (product.smallPictureUuid != null) {
-            product.smallPicture = await PictureService.instance
-                .getPictureById(product.smallPictureUuid!);
-          }
-        }
+        // for (ProductResponse product in newProducts) {
+        //   if (product.smallPictureUuid != null) {
+        //     product.smallPicture = await PictureService.instance
+        //         .getPictureById(product.smallPictureUuid!);
+        //   }
+        // }
         products.addAll(newProducts);
         selectedProducts.addAll(newProducts);
       }
@@ -34,7 +34,7 @@ class ProductRepository {
     return selectedProducts;
   }
 
-  Future<List<Product>> getProductsByCategory(Category category) async {
+  Future<List<ProductResponse>> getProductsByCategory(Category category) async {
     if (selectedProducts.isEmpty) {
       await getProducts();
     }
@@ -50,16 +50,16 @@ class ProductRepository {
     return selectedProducts;
   }
 
-  Future<Product> getProductImages(Product product) async {
-    if (product.pictures == null) return product;
+  // Future<Product> getProductImages(Product product) async {
+  //   if (product.pictures == null) return product;
 
-    product.bigPictures?.clear();
-    product.bigPictures ??= [];
+  //   product.bigPictures?.clear();
+  //   product.bigPictures ??= [];
 
-    for (String picUuid in product.pictures!) {
-      product.bigPictures
-          ?.add(await PictureService.instance.getPictureById(picUuid));
-    }
-    return product;
-  }
+  //   for (String picUuid in product.pictures!) {
+  //     product.bigPictures
+  //         ?.add(await PictureService.instance.getPictureById(picUuid));
+  //   }
+  //   return product;
+  // }
 }

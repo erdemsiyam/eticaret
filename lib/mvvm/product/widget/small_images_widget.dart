@@ -1,5 +1,5 @@
-import 'dart:typed_data';
 import 'package:eticaret/mvvm/product/bloc/product_bloc.dart';
+import 'package:eticaret/mvvm/product/model/product_response_model.dart';
 import 'package:eticaret/theme/light_color.dart';
 import 'package:eticaret/theme/theme.dart';
 import 'package:eticaret/widget/extentions.dart';
@@ -7,8 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SmallImagesWidget extends StatelessWidget {
+  ProductResponse product;
   final Animation<double> animation;
-  const SmallImagesWidget({Key? key, required this.animation})
+  SmallImagesWidget({Key? key, required this.product, required this.animation})
       : super(key: key);
 
   @override
@@ -32,8 +33,9 @@ class SmallImagesWidget extends StatelessWidget {
   List<Widget> _children(BuildContext context, ProductState state) {
     int index = 0;
     if (state is ProductLoadedState) {
-      if (state.isPicturesLoaded && state.product.bigPictures != null) {
-        return state.product.bigPictures
+      // if (state.isPicturesLoaded && state.product.bigPictures != null) {
+      if (product.images != null) {
+        return product.images
             ?.map((e) => _smallImage(context, e, index++))
             .toList() as List<Widget>;
       } else {
@@ -44,7 +46,8 @@ class SmallImagesWidget extends StatelessWidget {
     }
   }
 
-  Widget _smallImage(BuildContext context, Uint8List uint8list, int index) {
+  // Widget _smallImage(BuildContext context, Uint8List uint8list, int index) {
+  Widget _smallImage(BuildContext context, String imageUrl, int index) {
     return AnimatedBuilder(
       animation: animation,
       //  builder: null,
@@ -67,7 +70,7 @@ class SmallImagesWidget extends StatelessWidget {
             ),
             // color: Theme.of(context).backgroundColor,
           ),
-          child: Image.memory(uint8list),
+          child: Image.network(imageUrl),
         ).ripple(
           () {
             BlocProvider.of<ProductBloc>(context)

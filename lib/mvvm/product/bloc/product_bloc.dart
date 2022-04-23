@@ -6,20 +6,29 @@ part 'product_event.dart';
 part 'product_state.dart';
 
 class ProductBloc extends Bloc<ProductEvent, ProductState> {
-  late ProductResponse resultProduct;
-  ProductBloc(ProductResponse initProduct)
-      : super(ProductLoadedState(product: initProduct)) {
-    // on<GetProductImagesEvent>((event, emit) async {
-    //   resultProduct =
-    //       await ProductRepository.instance.getProductImages(event.product);
-    //   emit(ProductLoadedState(product: resultProduct, isPicturesLoaded: true));
-    // });
+  // late ProductResponse resultProduct;
+  int? lastPhotoIndex;
+  List<int>? lastSelectedOptions;
+  // int? lastSelectedSizeOptionIndex;
+  // int? lastSelectedColorOptionIndex;
+  ProductBloc(ProductResponse initProduct) : super(const ProductLoadedState()) {
     on<OnImageSelectEvent>((event, emit) async {
+      lastPhotoIndex = event.index;
       emit(ProductLoadedState(
-        product: resultProduct,
-        // isPicturesLoaded: true,
         bigPhotoSelectedIndex: event.index,
+        // selectedSizeOptionIndex: lastSelectedSizeOptionIndex ?? 0,
+        // selectedColorOptionIndex: lastSelectedColorOptionIndex ?? 0,
       ));
     });
+
+    // on<OnOptionSelectEvent>((event, emit) async {
+    //   lastSelectedSizeOptionIndex = event.selectedSizeOptionIndex;
+    //   lastSelectedColorOptionIndex = event.selectedColorOptionIndex;
+    //   emit(ProductLoadedState(
+    //     bigPhotoSelectedIndex: lastPhotoIndex ?? 0,
+    //     selectedSizeOptionIndex: lastSelectedSizeOptionIndex!,
+    //     selectedColorOptionIndex: lastSelectedColorOptionIndex!,
+    //   ));
+    // });
   }
 }
