@@ -1,3 +1,5 @@
+// ignore_for_file: unused_element
+
 import 'package:eticaret/service/user_service.dart';
 import 'package:eticaret/util/model/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -69,14 +71,18 @@ class UserRepository {
   _saveUserToCache(User newUser) async {
     _sharedPreferences ??= await SharedPreferences.getInstance();
     user = newUser;
-    if (user?.uuid != null)
+    if (user?.uuid != null) {
       _sharedPreferences?.setString(_uuidKey, user!.uuid!);
-    if (user?.username != null)
+    }
+    if (user?.username != null) {
       _sharedPreferences?.setString(_usernameKey, user!.username!);
-    if (user?.accessToken != null)
+    }
+    if (user?.accessToken != null) {
       _sharedPreferences?.setString(_accessTokenKey, user!.accessToken!);
-    if (user?.refreshToken != null)
+    }
+    if (user?.refreshToken != null) {
       _sharedPreferences?.setString(_refreshTokenKey, user!.refreshToken!);
+    }
   }
 
   _deleteUserFromCache() async {

@@ -18,12 +18,14 @@ class ProductDetailPage extends StatefulWidget {
   int selectedImageIndex;
   int selectedSizeIndex;
   int selectedColorIndex;
+  bool isLiked;
   ProductDetailPage({
     Key? key,
     required this.product,
     this.selectedImageIndex = 0,
     this.selectedSizeIndex = 0,
     this.selectedColorIndex = 0,
+    this.isLiked = false,
   }) : super(key: key);
 
   @override
@@ -135,7 +137,10 @@ class _ProductDetailPageState extends State<ProductDetailPage>
               Navigator.of(context).pop();
             },
           ),
-          const LikeButtonWidget(isLiked: false),
+          LikeButtonWidget(
+            product: widget.product,
+            isLiked: widget.isLiked,
+          ),
         ],
       ),
     );

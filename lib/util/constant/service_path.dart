@@ -9,4 +9,5 @@ class ServicePath {
   static const String PRODUCTS = '/items';
   static const String CATEGORIES = '/categories';
   static const String PICTURE = '/picture';
+  static const String FAVORITE = '/favorite';
 }

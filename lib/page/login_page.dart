@@ -89,7 +89,8 @@ class _LoginPageState extends State<LoginPage> {
                                                         .ProductsBloc(),
                                                   ),
                                                 ],
-                                                child: MainPage(title: ""),
+                                                child:
+                                                    const MainPage(title: ""),
                                               ),
                                             ),
                                           );

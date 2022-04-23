@@ -12,9 +12,9 @@ class BaseService {
 
   BaseService({this.isAuthEnable = true});
 
-  Future<K> request<T extends BaseModel, K extends BaseModel>({
+  Future<K?> request<T extends BaseModel, K extends BaseModel>({
     T? requestModel,
-    required K responseModel,
+    K? responseModel,
     required ServiceMethod serviceMethod,
     Map<String, String>? extraHeader,
     String? query,
@@ -90,8 +90,11 @@ class BaseService {
 
     switch (response.statusCode) {
       case 200:
-        responseModel.fromJson(response.body);
-        return responseModel;
+        if (responseModel != null) {
+          responseModel.fromJson(response.body);
+          return responseModel;
+        }
+        return null;
       case 401:
         // TODO : Aşağıdaki yapı buradan bir şekilde kaldırılmalı
         // if (recursive && UserViewModel.instance != null) {

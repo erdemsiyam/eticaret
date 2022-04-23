@@ -2,7 +2,6 @@ import 'package:eticaret/mvvm/product/model/product_response_model.dart';
 import 'package:eticaret/mvvm/product/model/products_response_model.dart';
 import 'package:eticaret/util/base/base_service.dart';
 import 'package:eticaret/util/constant/service_method.dart';
-import 'package:eticaret/util/model/user_model.dart';
 
 class ProductService extends BaseService {
   // Singleton
@@ -12,11 +11,25 @@ class ProductService extends BaseService {
 
   // Methods
   Future<List<ProductResponse>?> getProducts() async {
-    ProductsResponse productsResponse =
+    ProductsResponse? productsResponse =
         await request<ProductsResponse, ProductsResponse>(
       responseModel: ProductsResponse(),
       serviceMethod: ServiceMethod.GET_PRODUCTS,
     );
-    return productsResponse.products;
+    return productsResponse!.products;
+  }
+
+  addFavorite(ProductResponse product) async {
+    await request<ProductsResponse, ProductsResponse>(
+      serviceMethod: ServiceMethod.ADD_FAVORITE,
+      query: product.uuid,
+    );
+  }
+
+  deleteFavorite(ProductResponse product) async {
+    await request<ProductsResponse, ProductsResponse>(
+      serviceMethod: ServiceMethod.DELETE_FAVORITE,
+      query: product.uuid,
+    );
   }
 }

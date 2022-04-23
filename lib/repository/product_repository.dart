@@ -1,6 +1,5 @@
 import 'package:eticaret/mvvm/category/model/category_model.dart';
 import 'package:eticaret/mvvm/product/model/product_response_model.dart';
-import 'package:eticaret/service/picture_service.dart';
 import 'package:eticaret/service/product_service.dart';
 
 class ProductRepository {
@@ -20,13 +19,6 @@ class ProductRepository {
       List<ProductResponse>? newProducts =
           await ProductService.instance.getProducts();
       if (newProducts != null) {
-        // Get Pictures of Images
-        // for (ProductResponse product in newProducts) {
-        //   if (product.smallPictureUuid != null) {
-        //     product.smallPicture = await PictureService.instance
-        //         .getPictureById(product.smallPictureUuid!);
-        //   }
-        // }
         products.addAll(newProducts);
         selectedProducts.addAll(newProducts);
       }
@@ -50,16 +42,11 @@ class ProductRepository {
     return selectedProducts;
   }
 
-  // Future<Product> getProductImages(Product product) async {
-  //   if (product.pictures == null) return product;
+  addFavorite(ProductResponse product) async {
+    await ProductService.instance.addFavorite(product);
+  }
 
-  //   product.bigPictures?.clear();
-  //   product.bigPictures ??= [];
-
-  //   for (String picUuid in product.pictures!) {
-  //     product.bigPictures
-  //         ?.add(await PictureService.instance.getPictureById(picUuid));
-  //   }
-  //   return product;
-  // }
+  deleteFavorite(ProductResponse product) async {
+    await ProductService.instance.deleteFavorite(product);
+  }
 }

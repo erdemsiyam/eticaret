@@ -11,11 +11,11 @@ class CategoryService extends BaseService {
 
   // Methods
   Future<List<Category>?> getCategories() async {
-    CategoriesResponse categoriesResponse =
+    CategoriesResponse? categoriesResponse =
         await request<Category, CategoriesResponse>(
       responseModel: CategoriesResponse(),
       serviceMethod: ServiceMethod.GET_CATEGORIES,
     );
-    return categoriesResponse.categories;
+    return categoriesResponse!.categories;
   }
 }

@@ -20,4 +20,8 @@ class ServiceMethod {
       ServiceMethod._private(ServicePath.CATEGORIES, HttpOption.GET);
   static ServiceMethod GET_PICTURE =
       ServiceMethod._private(ServicePath.PICTURE, HttpOption.GET);
+  static ServiceMethod ADD_FAVORITE =
+      ServiceMethod._private(ServicePath.FAVORITE, HttpOption.POST);
+  static ServiceMethod DELETE_FAVORITE =
+      ServiceMethod._private(ServicePath.FAVORITE, HttpOption.DELETE);
 }
