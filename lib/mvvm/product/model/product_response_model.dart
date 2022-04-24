@@ -49,8 +49,8 @@ class ProductResponse extends BaseModel {
   // Local Properties
   // Uint8List? smallPicture; // deleted
   // List<Uint8List>? bigPictures; // deleted
-  bool isSelected = true;
-  bool isLiked = true;
+  bool isSelected = false;
+  bool isLiked = false;
 
   @override
   fromJson(String jsonStr) {

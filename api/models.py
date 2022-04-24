@@ -116,8 +116,8 @@ class CartItem(BaseModel):
     uuid:Optional[str]
     item_uuid:Optional[str]
     # selected_option:Optional[Option]
-    selected_size_option:str
-    selected_color_option:str
+    selected_size_option:Optional[str]
+    selected_color_option:Optional[str]
 
 class Cart(BaseModel):
     user_uuid:Optional[str]

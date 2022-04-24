@@ -181,7 +181,7 @@ def add_cart(item:Item,authorize:AuthJWT=Depends()):
             cart = Cart()
             cart.user_uuid = current_user_uuid
             cart.cart_item_uuids = [cart_item.uuid]
-            # carts.append(cart)
+            carts.append(cart)
             return True
     return False
 

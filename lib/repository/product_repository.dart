@@ -71,7 +71,7 @@ class ProductRepository {
   Future<List<ProductResponse>> getFavorites() async {
     if (favorites.isEmpty) {
       List<ProductResponse>? newFavorites =
-          await ProductService.instance.getProducts();
+          await ProductService.instance.getFavorites();
       if (newFavorites != null) {
         favorites = newFavorites;
       }

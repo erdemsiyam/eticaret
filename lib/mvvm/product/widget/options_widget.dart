@@ -195,6 +195,12 @@ class _OptionsWidgetState extends State<OptionsWidget> {
         return Colors.white;
       case "BLACK":
         return Colors.black;
+      case "ORANGE":
+        return Colors.orange;
+      case "PINK":
+        return Colors.pink;
+      case "YELLOW":
+        return Colors.yellow;
       default:
         return Colors.grey;
     }
