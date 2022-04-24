@@ -12,6 +12,8 @@ class ProductRepository {
   List<ProductResponse> products = [];
   List<ProductResponse> selectedProducts =
       []; // By Word Search or By Category select
+  List<ProductResponse> favorites = [];
+  List<ProductResponse> cart = [];
 
   // Methods
   Future<List<ProductResponse>> getProducts() async {
@@ -22,6 +24,8 @@ class ProductRepository {
         products.addAll(newProducts);
         selectedProducts.addAll(newProducts);
       }
+      await getFavorites();
+      await getCart();
     }
     return selectedProducts;
   }
@@ -44,15 +48,59 @@ class ProductRepository {
 
   addFavorite(ProductResponse product) async {
     await ProductService.instance.addFavorite(product);
-    // TODO : products listesini güncelle
+    favorites.add(product);
+    products.where((element) => element.uuid == product.uuid).first.isLiked =
+        true;
+    selectedProducts
+        .where((element) => element.uuid == product.uuid)
+        .first
+        .isLiked = true;
   }
 
   deleteFavorite(ProductResponse product) async {
     await ProductService.instance.deleteFavorite(product);
-    // TODO : products listesini güncelle
+    favorites.removeWhere((element) => element.uuid == product.uuid);
+    products.where((element) => element.uuid == product.uuid).first.isLiked =
+        false;
+    selectedProducts
+        .where((element) => element.uuid == product.uuid)
+        .first
+        .isLiked = false;
   }
 
-  // TODO : getFavorites
-  // TODO : getCart
+  Future<List<ProductResponse>> getFavorites() async {
+    if (favorites.isEmpty) {
+      List<ProductResponse>? newFavorites =
+          await ProductService.instance.getProducts();
+      if (newFavorites != null) {
+        favorites = newFavorites;
+      }
+    }
 
+    // Hepsi false yapılır
+    products.map((e) {
+      e.isLiked = false;
+    });
+    selectedProducts.map((e) {
+      e.isLiked = false;
+    });
+
+    // Favoriler true yapılır
+    for (ProductResponse favori in favorites) {
+      products.where((element) => element.uuid == favori.uuid).first.isLiked =
+          true;
+      selectedProducts
+          .where((element) => element.uuid == favori.uuid)
+          .first
+          .isLiked = true;
+    }
+
+    return favorites;
+  }
+
+  Future<List<ProductResponse>> getCart() async {
+    // TODO yapılmalı
+    cart = [];
+    return [];
+  }
 }

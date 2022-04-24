@@ -32,4 +32,22 @@ class ProductService extends BaseService {
       query: product.uuid,
     );
   }
+
+  Future<List<ProductResponse>?> getFavorites() async {
+    ProductsResponse? productsResponse =
+        await request<ProductsResponse, ProductsResponse>(
+      responseModel: ProductsResponse(),
+      serviceMethod: ServiceMethod.GET_FAVORITES,
+    );
+    return productsResponse!.products;
+  }
+
+  Future<List<ProductResponse>?> getCart() async {
+    ProductsResponse? productsResponse =
+        await request<ProductsResponse, ProductsResponse>(
+      responseModel: ProductsResponse(),
+      serviceMethod: ServiceMethod.GET_CART,
+    );
+    return productsResponse!.products;
+  }
 }

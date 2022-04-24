@@ -1,5 +1,3 @@
-import 'package:eticaret/model/data.dart';
-import 'package:eticaret/mvvm/product/bloc/product_bloc.dart';
 import 'package:eticaret/mvvm/product/model/product_response_model.dart';
 import 'package:eticaret/mvvm/product/widget/big_image_widget.dart';
 import 'package:eticaret/mvvm/product/widget/like_button_widget.dart';
@@ -8,24 +6,15 @@ import 'package:eticaret/mvvm/product/widget/small_images_widget.dart';
 import 'package:eticaret/theme/light_color.dart';
 import 'package:eticaret/theme/theme.dart';
 import 'package:eticaret/widget/icon_button_widget.dart';
-import 'package:eticaret/widget/title_text.dart';
 import 'package:flutter/material.dart';
-import 'package:eticaret/widget/extentions.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductDetailPage extends StatefulWidget {
   ProductResponse product;
   int selectedImageIndex;
-  int selectedSizeIndex;
-  int selectedColorIndex;
-  bool isLiked;
   ProductDetailPage({
     Key? key,
     required this.product,
     this.selectedImageIndex = 0,
-    this.selectedSizeIndex = 0,
-    this.selectedColorIndex = 0,
-    this.isLiked = false,
   }) : super(key: key);
 
   @override
@@ -52,8 +41,6 @@ class _ProductDetailPageState extends State<ProductDetailPage>
     super.dispose();
   }
 
-  bool isLiked = true;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,19 +62,47 @@ class _ProductDetailPageState extends State<ProductDetailPage>
               ProductDetailWidget(
                 product: widget.product,
                 onSelectedSizeOptionChanged: (p0) {
-                  widget.selectedSizeIndex = p0;
+                  widget.product.selectedSizeOption =
+                      widget.product.sizeOptions![p0];
                 },
                 onSelectedColorOptionChanged: (p0) {
-                  widget.selectedColorIndex = p0;
+                  widget.product.selectedColorOption =
+                      widget.product.colorOptions![p0];
                 },
-                selectedSizeIndex: widget.selectedSizeIndex,
-                selectedColorIndex: widget.selectedColorIndex,
+                selectedSizeIndex:
+                    getSelectedSizeIndex(), //widget.selectedSizeIndex,
+                selectedColorIndex:
+                    getSelectedColorIndex(), //widget.selectedColorIndex,
               ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  int getSelectedSizeIndex() {
+    if (widget.product.selectedSizeOption != null) {
+      for (int i = 0; i < widget.product.sizeOptions!.length; i++) {
+        if (widget.product.selectedSizeOption ==
+            widget.product.sizeOptions![i]) {
+          return i;
+        }
+      }
+    }
+    return 0;
+  }
+
+  int getSelectedColorIndex() {
+    if (widget.product.selectedColorOption != null) {
+      for (int i = 0; i < widget.product.colorOptions!.length; i++) {
+        if (widget.product.selectedColorOption ==
+            widget.product.colorOptions![i]) {
+          return i;
+        }
+      }
+    }
+    return 0;
   }
 
   FloatingActionButton _flotingButton() {
@@ -139,7 +154,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
           ),
           LikeButtonWidget(
             product: widget.product,
-            isLiked: widget.isLiked,
+            isLiked: widget.product.isLiked,
           ),
         ],
       ),

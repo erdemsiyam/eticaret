@@ -10,4 +10,6 @@ class ServicePath {
   static const String CATEGORIES = '/categories';
   static const String PICTURE = '/picture';
   static const String FAVORITE = '/favorite';
+  static const String FAVORITES = '/favorites';
+  static const String CART = '/cart';
 }
