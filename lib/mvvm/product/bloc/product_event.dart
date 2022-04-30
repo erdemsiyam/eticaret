@@ -15,3 +15,15 @@ class OnFavoriteChangeEvent extends ProductEvent {
         isAdded,
       ];
 }
+
+class OnCartAddEvent extends ProductEvent {
+  final ProductResponse product;
+  const OnCartAddEvent({required this.product});
+
+  @override
+  List<Object> get props => [
+        product.uuid ?? "",
+        product.selectedSizeOption ?? "",
+        product.selectedColorOption ?? "",
+      ];
+}

@@ -1,3 +1,4 @@
+import 'package:eticaret/mvvm/product/bloc/product_bloc.dart';
 import 'package:eticaret/mvvm/product/model/product_response_model.dart';
 import 'package:eticaret/mvvm/product/widget/big_image_widget.dart';
 import 'package:eticaret/mvvm/product/widget/like_button_widget.dart';
@@ -7,6 +8,7 @@ import 'package:eticaret/theme/light_color.dart';
 import 'package:eticaret/theme/theme.dart';
 import 'package:eticaret/widget/icon_button_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductDetailPage extends StatefulWidget {
   ProductResponse product;
@@ -107,7 +109,13 @@ class _ProductDetailPageState extends State<ProductDetailPage>
 
   FloatingActionButton _flotingButton() {
     return FloatingActionButton(
-      onPressed: () {},
+      onPressed: () {
+        BlocProvider.of<ProductBloc>(context).add(
+          OnCartAddEvent(
+            product: widget.product,
+          ),
+        );
+      },
       backgroundColor: LightColor.orange,
       child: Icon(Icons.shopping_basket,
           color: Theme.of(context).floatingActionButtonTheme.backgroundColor),

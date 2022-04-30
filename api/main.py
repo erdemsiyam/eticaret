@@ -108,7 +108,7 @@ def get_item_by_id(item_uuid:str):
             return i
     return {}
 
-@app.get('/favorites/')
+@app.get('/favorites')
 def get_favories_by_user(authorize:AuthJWT=Depends()):
     check_auth(authorize)
     current_user_uuid = authorize.get_jwt_subject()
@@ -120,7 +120,7 @@ def get_favories_by_user(authorize:AuthJWT=Depends()):
                     response_list.append(x)
     return response_list
 
-@app.get('/cart/')
+@app.get('/cart')
 def get_cart_by_user(authorize:AuthJWT=Depends()):
     check_auth(authorize)
     current_user_uuid = authorize.get_jwt_subject()
@@ -153,7 +153,7 @@ def add_fovorite(item_uuid:str,authorize:AuthJWT=Depends()):
             return True
     return False
 
-@app.post('/cart/')
+@app.post('/cart')
 def add_cart(item:Item,authorize:AuthJWT=Depends()):
     check_auth(authorize)
     current_user_uuid = authorize.get_jwt_subject()

@@ -28,4 +28,8 @@ class ServiceMethod {
       ServiceMethod._private(ServicePath.FAVORITES, HttpOption.GET);
   static ServiceMethod GET_CART =
       ServiceMethod._private(ServicePath.CART, HttpOption.GET);
+  static ServiceMethod ADD_CART_ITEM =
+      ServiceMethod._private(ServicePath.CART, HttpOption.POST);
+  static ServiceMethod DELETE_CART_ITEM =
+      ServiceMethod._private(ServicePath.CART, HttpOption.DELETE);
 }

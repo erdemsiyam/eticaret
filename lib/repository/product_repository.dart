@@ -99,8 +99,22 @@ class ProductRepository {
   }
 
   Future<List<ProductResponse>> getCart() async {
-    // TODO yapılmalı
-    cart = [];
-    return [];
+    if (cart.isEmpty) {
+      List<ProductResponse>? newCart = await ProductService.instance.getCart();
+      if (newCart != null) {
+        cart = newCart;
+      }
+    }
+    return cart;
+  }
+
+  addCart(ProductResponse product) async {
+    await ProductService.instance.addCartItem(product);
+    cart.add(product);
+  }
+
+  deleteCart(ProductResponse product) async {
+    await ProductService.instance.deleteCartItem(product);
+    cart.removeWhere((element) => element.categoryUuid == product.cartItemUuid);
   }
 }

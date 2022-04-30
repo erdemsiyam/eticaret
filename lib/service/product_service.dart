@@ -50,4 +50,18 @@ class ProductService extends BaseService {
     );
     return productsResponse!.products;
   }
+
+  addCartItem(ProductResponse product) async {
+    await request<ProductResponse, ProductResponse>(
+      requestModel: product,
+      serviceMethod: ServiceMethod.ADD_CART_ITEM,
+    );
+  }
+
+  deleteCartItem(ProductResponse product) async {
+    await request<ProductResponse, ProductResponse>(
+      serviceMethod: ServiceMethod.DELETE_FAVORITE,
+      query: product.cartItemUuid,
+    );
+  }
 }
