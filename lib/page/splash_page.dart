@@ -1,4 +1,6 @@
+import 'package:eticaret/mvvm/cart/bloc/cart_bloc.dart';
 import 'package:eticaret/mvvm/category/bloc/category_bloc.dart';
+import 'package:eticaret/mvvm/favorites/bloc/favorites_bloc.dart';
 import 'package:eticaret/mvvm/products/bloc/products_bloc.dart';
 import 'package:eticaret/mvvm/user_login/bloc/user_login_bloc.dart';
 import 'package:eticaret/page/inner_page/home_page.dart';
@@ -68,6 +70,12 @@ class _SplashPageState extends State<SplashPage> {
                   ),
                   BlocProvider(
                     create: (_) => ProductsBloc(),
+                  ),
+                  BlocProvider(
+                    create: (_) => FavoritesBloc(),
+                  ),
+                  BlocProvider(
+                    create: (_) => CartBloc(),
                   ),
                 ],
                 child: const MainPage(title: ""),

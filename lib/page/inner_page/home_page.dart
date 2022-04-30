@@ -1,5 +1,3 @@
-import 'package:eticaret/mvvm/category/bloc/category_bloc.dart'
-    as category_bloc;
 import 'package:eticaret/mvvm/category/widget/categories_widget.dart';
 import 'package:eticaret/mvvm/products/widget/products_widget.dart';
 import 'package:eticaret/theme/light_color.dart';

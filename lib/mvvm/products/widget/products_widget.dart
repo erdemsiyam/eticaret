@@ -32,7 +32,7 @@ class _ProductsWidgetState extends State<ProductsWidget> {
                 scrollPosition -= 40;
                 itemIndex = (scrollPosition / 230).floor() + 1;
               }
-              print(itemIndex);
+              // print(itemIndex);
               BlocProvider.of<ProductsBloc>(context)
                   .add(ScrollProductsEvent(selectedIndex: itemIndex));
             }

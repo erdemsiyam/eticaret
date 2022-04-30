@@ -1,7 +1,10 @@
+import 'package:eticaret/mvvm/cart/bloc/cart_bloc.dart';
 import 'package:eticaret/mvvm/category/bloc/category_bloc.dart';
+import 'package:eticaret/mvvm/favorites/bloc/favorites_bloc.dart';
 import 'package:eticaret/mvvm/products/bloc/products_bloc.dart';
+import 'package:eticaret/page/inner_page/cart_page.dart';
+import 'package:eticaret/page/inner_page/favorites_page.dart';
 import 'package:eticaret/page/inner_page/home_page.dart';
-import 'package:eticaret/page/inner_page/shopping_cart_page.dart';
 import 'package:eticaret/theme/light_color.dart';
 import 'package:eticaret/theme/theme.dart';
 import 'package:eticaret/widget/BottomNavigationBar/bottom_navigation_bar.dart';
@@ -20,14 +23,17 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  int index = 0;
+
   @override
   void initState() {
     super.initState();
     BlocProvider.of<ProductsBloc>(context).add(GetProductsEvent());
     BlocProvider.of<CategoryBloc>(context).add(GetCategoriesEvent());
+    BlocProvider.of<CartBloc>(context).add(GetCartEvent());
+    BlocProvider.of<FavoritesBloc>(context).add(GetFavoritesEvent());
   }
 
-  bool isHomePageSelected = true;
   Widget _appBar() {
     return Container(
       padding: AppTheme.padding,
@@ -93,47 +99,25 @@ class _MainPageState extends State<MainPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               TitleText(
-                text: isHomePageSelected ? 'Our' : 'Shopping',
+                text: getTitle1(),
                 fontSize: 27,
                 fontWeight: FontWeight.w400,
               ),
               TitleText(
-                text: isHomePageSelected ? 'Products' : 'Cart',
+                text: getTitle2(),
                 fontSize: 27,
                 fontWeight: FontWeight.w700,
               ),
             ],
           ),
           const Spacer(),
-          !isHomePageSelected
-              ? Container(
-                  padding: const EdgeInsets.all(10),
-                  child: const Icon(
-                    Icons.delete_outline,
-                    color: LightColor.orange,
-                  ),
-                ).ripple(
-                  () {},
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(13),
-                  ),
-                )
-              : const SizedBox(),
+          // !(index == 0)
+          //     ?
+          //     :
+          const SizedBox(),
         ],
       ),
     );
-  }
-
-  void onBottomIconPressed(int index) {
-    if (index == 0 || index == 1) {
-      setState(() {
-        isHomePageSelected = true;
-      });
-    } else {
-      setState(() {
-        isHomePageSelected = false;
-      });
-    }
   }
 
   @override
@@ -166,12 +150,7 @@ class _MainPageState extends State<MainPage> {
                         duration: const Duration(milliseconds: 300),
                         switchInCurve: Curves.easeInToLinear,
                         switchOutCurve: Curves.easeOutBack,
-                        child: isHomePageSelected
-                            ? const HomePage(title: "aaa")
-                            : const Align(
-                                alignment: Alignment.topCenter,
-                                child: ShoppingCartPage(),
-                              ),
+                        child: getSelectedPage(),
                       ),
                     ),
                   ],
@@ -182,12 +161,69 @@ class _MainPageState extends State<MainPage> {
               bottom: 0,
               right: 0,
               child: CustomBottomNavigationBar(
-                onIconPresedCallback: onBottomIconPressed,
+                onIconPresedCallback: indexChanged,
               ),
             )
           ],
         ),
       ),
     );
+  }
+
+  indexChanged(int newIndex) {
+    setState(() {
+      index = newIndex;
+      if (newIndex == 2) {
+        BlocProvider.of<CartBloc>(context).add(GetCartEvent());
+      } else if (newIndex == 3) {
+        BlocProvider.of<FavoritesBloc>(context).add(GetFavoritesEvent());
+      }
+    });
+  }
+
+  Widget getSelectedPage() {
+    switch (index) {
+      case 0:
+      case 1:
+        return const HomePage(title: "aaa");
+      case 2:
+        return const Align(
+          alignment: Alignment.topCenter,
+          child: CartPage(),
+        );
+      case 3:
+        return Align(
+          alignment: Alignment.topCenter,
+          child: FavoritesPage(),
+        );
+      default:
+        return Container();
+    }
+  }
+
+  String getTitle1() {
+    switch (index) {
+      case 0:
+      case 1:
+        return 'Our';
+      case 2:
+      case 3:
+        return 'Favorite';
+      default:
+        return 'Shopping';
+    }
+  }
+
+  String getTitle2() {
+    switch (index) {
+      case 0:
+      case 1:
+        return 'Products';
+      case 2:
+      case 3:
+        return 'Products';
+      default:
+        return 'Cart';
+    }
   }
 }

@@ -10,7 +10,7 @@ part 'products_state.dart';
 class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
   ProductsBloc() : super(LoadingState()) {
     on<GetProductsEvent>((event, emit) async {
-      // emit(LoadingState())
+      emit(LoadingState());
       emit(
         LoadedState(
           products: await ProductRepository.instance.getProducts(),
