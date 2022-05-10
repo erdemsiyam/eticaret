@@ -11,7 +11,7 @@ class UserLoginBloc extends Bloc<UserLoginEvent, UserLoginState> {
   UserLoginBloc() : super((const LoadedState())) {
     on<LoginClickEvent>((event, emit) async {
       emit(LoadingState());
-      await Future.delayed(const Duration(seconds: 1));
+      await Future.delayed(const Duration(seconds: 1)); // TODO kaldır
       User? responseUser = await UserRepository.instance
           .login(User(username: event.username, password: event.password));
       if (responseUser == null) {

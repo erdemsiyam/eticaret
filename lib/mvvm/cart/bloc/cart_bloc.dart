@@ -12,7 +12,16 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       emit(LoadingState());
       emit(
         LoadedState(
-          products: await ProductRepository.instance.getFavorites(),
+          products: await ProductRepository.instance.getCartItems(),
+        ),
+      );
+    });
+    on<DeleteCartItemEvent>((event, emit) async {
+      emit(LoadingState());
+      await ProductRepository.instance.deleteCartItem(event.product);
+      emit(
+        LoadedState(
+          products: await ProductRepository.instance.getCartItems(),
         ),
       );
     });

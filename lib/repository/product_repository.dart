@@ -25,7 +25,7 @@ class ProductRepository {
         selectedProducts.addAll(newProducts);
       }
       await getFavorites();
-      await getCart();
+      await getCartItems();
     }
     return selectedProducts;
   }
@@ -98,7 +98,7 @@ class ProductRepository {
     return favorites;
   }
 
-  Future<List<ProductResponse>> getCart() async {
+  Future<List<ProductResponse>> getCartItems() async {
     if (cart.isEmpty) {
       List<ProductResponse>? newCart = await ProductService.instance.getCart();
       if (newCart != null) {
@@ -113,8 +113,8 @@ class ProductRepository {
     cart.add(product);
   }
 
-  deleteCart(ProductResponse product) async {
+  deleteCartItem(ProductResponse product) async {
     await ProductService.instance.deleteCartItem(product);
-    cart.removeWhere((element) => element.categoryUuid == product.cartItemUuid);
+    cart.removeWhere((element) => element.cartItemUuid == product.cartItemUuid);
   }
 }

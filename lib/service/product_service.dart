@@ -52,15 +52,18 @@ class ProductService extends BaseService {
   }
 
   addCartItem(ProductResponse product) async {
+    ProductResponse productWithCartId = ProductResponse();
     await request<ProductResponse, ProductResponse>(
       requestModel: product,
+      responseModel: productWithCartId,
       serviceMethod: ServiceMethod.ADD_CART_ITEM,
     );
+    product.cartItemUuid = productWithCartId.cartItemUuid;
   }
 
   deleteCartItem(ProductResponse product) async {
     await request<ProductResponse, ProductResponse>(
-      serviceMethod: ServiceMethod.DELETE_FAVORITE,
+      serviceMethod: ServiceMethod.DELETE_CART_ITEM,
       query: product.cartItemUuid,
     );
   }

@@ -8,16 +8,20 @@ from fastapi.exceptions import HTTPException
 from pydantic import BaseModel
 from fastapi_jwt_auth import AuthJWT
 import uuid
-from typing import Optional,List
+from typing import Optional,Lis
 import os
 from models import *
 from repositories import *
+import uvicorn
 
 
-IMAGEDIR = os.path.abspath(os.getcwd()) + '/images/'
+
+IMAGEDIR = os.path.abspath(os.getcwd()) + '/api/images/'
 
 app = FastAPI()
-app.mount("/images", StaticFiles(directory="images"), name="static")
+
+# Static Config
+app.mount("/images/", StaticFiles(directory="api/images"), name="static")
 #uvicorn main:app --reload
 
 # JWT Ayarı
@@ -163,16 +167,20 @@ def add_cart(item:Item,authorize:AuthJWT=Depends()):
                 if x.user_uuid == current_user_uuid:
                     cart_item = CartItem()
                     cart_item.uuid = str(uuid.uuid4())
+                    item.cart_item_uuid = cart_item.uuid
+                    item.price = i.price
                     cart_item.item_uuid = item.uuid
                     # cart_item.selected_option = item.selected_option
                     cart_item.selected_size_option = item.selected_size_option
                     cart_item.selected_color_option = item.selected_color_option
                     cart_items.append(cart_item)
                     x.cart_item_uuids.append(cart_item.uuid)
-                    return True
+                    return item
                     
             cart_item = CartItem()
             cart_item.uuid = str(uuid.uuid4())
+            item.cart_item_uuid = cart_item.uuid
+            item.price = i.price
             cart_item.item_uuid = item.uuid
             # cart_item.selected_option = item.selected_option
             cart_item.selected_size_option = item.selected_size_option
@@ -182,8 +190,9 @@ def add_cart(item:Item,authorize:AuthJWT=Depends()):
             cart.user_uuid = current_user_uuid
             cart.cart_item_uuids = [cart_item.uuid]
             carts.append(cart)
-            return True
-    return False
+            return item
+    # return False
+    return item
 
 @app.delete('/favorite/{item_uuid}')
 def delete_favorite(item_uuid:str,authorize:AuthJWT=Depends()):
@@ -211,3 +220,6 @@ def delete_cart(cart_item_uuid:str,authorize:AuthJWT=Depends()):
                             return True
     return False
 
+if __name__ == "__main__":
+    # Debug için
+    uvicorn.run(app, host="127.0.0.1", port=8000)

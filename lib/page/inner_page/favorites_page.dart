@@ -1,12 +1,9 @@
-import 'package:eticaret/model/data.dart';
-import 'package:eticaret/model/product.dart';
 import 'package:eticaret/mvvm/favorites/bloc/favorites_bloc.dart';
 import 'package:eticaret/mvvm/product/bloc/product_bloc.dart';
 import 'package:eticaret/mvvm/product/model/product_response_model.dart';
 import 'package:eticaret/page/product_detail_page.dart';
 import 'package:eticaret/theme/light_color.dart';
 import 'package:eticaret/theme/theme.dart';
-import 'package:eticaret/widget/extentions.dart';
 import 'package:eticaret/widget/title_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,7 +44,7 @@ class FavoritesPage extends StatelessWidget {
             ),
             // getCartItems(),
             const Divider(thickness: 1, height: 70),
-            _counts(),
+            _counts(context),
             // const SizedBox(height: 30),
             // _submitButton(context),
           ],
@@ -143,8 +140,9 @@ class FavoritesPage extends StatelessWidget {
                       color: LightColor.orange,
                     ),
                     onPressed: () {
-                      BlocProvider.of<FavoritesBloc>(context)
-                          .add(DeleteFavoriteEvent(product: model));
+                      BlocProvider.of<FavoritesBloc>(context).add(
+                        DeleteFavoriteEvent(product: model),
+                      );
                     },
                   ),
                 ),
@@ -156,17 +154,30 @@ class FavoritesPage extends StatelessWidget {
     );
   }
 
-  Widget _counts() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        TitleText(
-          text: '$itemsCount Items',
-          color: LightColor.grey,
-          fontSize: 14,
-          fontWeight: FontWeight.w500,
-        ),
-      ],
+  Widget _counts(BuildContext context) {
+    return BlocBuilder(
+      bloc: BlocProvider.of<FavoritesBloc>(context),
+      builder: (context, state) {
+        int itemCounts = 0;
+        switch (state.runtimeType) {
+          case LoadedState:
+            itemCounts = (state as LoadedState).products.length;
+            break;
+          default:
+            itemCounts = 0;
+        }
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            TitleText(
+              text: '$itemCounts Items',
+              color: LightColor.grey,
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),
+          ],
+        );
+      },
     );
   }
 }

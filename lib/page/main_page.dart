@@ -5,6 +5,7 @@ import 'package:eticaret/mvvm/products/bloc/products_bloc.dart';
 import 'package:eticaret/page/inner_page/cart_page.dart';
 import 'package:eticaret/page/inner_page/favorites_page.dart';
 import 'package:eticaret/page/inner_page/home_page.dart';
+import 'package:eticaret/page/inner_page/shopping_cart_page.dart';
 import 'package:eticaret/theme/light_color.dart';
 import 'package:eticaret/theme/theme.dart';
 import 'package:eticaret/widget/BottomNavigationBar/bottom_navigation_bar.dart';
@@ -187,9 +188,9 @@ class _MainPageState extends State<MainPage> {
       case 1:
         return const HomePage(title: "aaa");
       case 2:
-        return const Align(
+        return Align(
           alignment: Alignment.topCenter,
-          child: CartPage(),
+          child: ShoppingCartPage(),
         );
       case 3:
         return Align(
